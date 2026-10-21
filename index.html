@@ -13,26 +13,26 @@
 :root{
   --canvas:#ffffff; --fill1:#dcdce1; --fill2:#e8e8ed; --card:#f2f2f6;
   --label:#000000; --label2:#3c3c43d9; --label3:#3c3c4399; --sep:#d1d1d6; --line:#c7c7cc;
-  --field:#7676801f; --accent:#0e8fa3; --accent-weak:#ddf2f5; --chip:#e6e7ec; --cur-bg:linear-gradient(180deg,#e3f4f6,#d5edf0);
+  --field:#7676801f; --accent:#0e8fa3; --accent-weak:#ddf2f5; --chip:#e6e7ec; --cur-bg:#dff1f4;
   --glass:rgba(255,255,255,.5); --glass-win:rgba(250,250,252,.56); --group:rgba(255,255,255,.62); --edge:rgba(255,255,255,.75);
-  --card-bg:linear-gradient(180deg,#f7f7f9,#eeeef2); --l2-bg:linear-gradient(180deg,#eaf6f7,#dff0f2); --l1-bg:linear-gradient(180deg,#dcf0f2,#cce6ea);
-  --chip-bg:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.55));
+  --card-bg:#f2f2f6; --l2-bg:#e8e8ed; --l1-bg:#dcdce1;
+  --chip-bg:#ffffff;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Noto Sans SC","Helvetica Neue",sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --canvas:#000000; --fill1:#3a3a3c; --fill2:#2c2c2e; --card:#1c1c1e;
   --label:#ffffff; --label2:#ebebf5d9; --label3:#ebebf599; --sep:#38383a; --line:#48484a;
-  --field:#7676803d; --accent:#3fc6db; --accent-weak:#153c43; --chip:#2c2c2e; --cur-bg:linear-gradient(180deg,#1b4a52,#163e45);
+  --field:#7676803d; --accent:#3fc6db; --accent-weak:#153c43; --chip:#2c2c2e; --cur-bg:#1b4a52;
   --glass:rgba(22,22,24,.5); --glass-win:rgba(40,40,44,.56); --group:rgba(70,70,76,.4); --edge:rgba(255,255,255,.1);
-  --card-bg:linear-gradient(180deg,#232327,#1b1b1e); --l2-bg:linear-gradient(180deg,#22353a,#1c2d31); --l1-bg:linear-gradient(180deg,#24444a,#1d393e);
-  --chip-bg:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05)); color-scheme:dark}}
+  --card-bg:#1c1c1e; --l2-bg:#2c2c2e; --l1-bg:#3a3a3c;
+  --chip-bg:#2c2c2e; color-scheme:dark}}
 :root[data-theme="dark"]{
   --canvas:#000000; --fill1:#3a3a3c; --fill2:#2c2c2e; --card:#1c1c1e;
   --label:#ffffff; --label2:#ebebf5d9; --label3:#ebebf599; --sep:#38383a; --line:#48484a;
-  --field:#7676803d; --accent:#3fc6db; --accent-weak:#153c43; --chip:#2c2c2e; --cur-bg:linear-gradient(180deg,#1b4a52,#163e45);
+  --field:#7676803d; --accent:#3fc6db; --accent-weak:#153c43; --chip:#2c2c2e; --cur-bg:#1b4a52;
   --glass:rgba(22,22,24,.5); --glass-win:rgba(40,40,44,.56); --group:rgba(70,70,76,.4); --edge:rgba(255,255,255,.1);
-  --card-bg:linear-gradient(180deg,#232327,#1b1b1e); --l2-bg:linear-gradient(180deg,#22353a,#1c2d31); --l1-bg:linear-gradient(180deg,#24444a,#1d393e);
-  --chip-bg:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05)); color-scheme:dark}
+  --card-bg:#1c1c1e; --l2-bg:#2c2c2e; --l1-bg:#3a3a3c;
+  --chip-bg:#2c2c2e; color-scheme:dark}
 
 [hidden]{display:none!important}
 html,body{height:100%}
@@ -125,8 +125,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .jl{z-index:2}
 .jl line{stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .jl circle{fill:var(--accent)}
-.card{position:absolute;left:0;top:0;width:212px;box-sizing:border-box;padding:6px 9px 7px;background:var(--card-bg);border-radius:6px;outline:1.5px solid transparent;outline-offset:-1.5px;transition:outline-color .18s ease,background-color .2s ease}
-.card.bare{width:max-content;max-width:212px}
+.card{position:absolute;left:0;top:0;width:max-content;max-width:212px;box-sizing:border-box;padding:6px 9px 7px;background:var(--card-bg);border-radius:6px;outline:1.5px solid transparent;outline-offset:-1.5px;transition:outline-color .18s ease,background-color .2s ease}
+
 .l1{background:var(--l1-bg)}
 .l2{background:var(--l2-bg)}
 .ct{font-size:14px;line-height:19px;font-weight:500;letter-spacing:-.005em;overflow-wrap:anywhere}
@@ -141,7 +141,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .cb b{color:var(--label);font-weight:600}
 .cb img{display:block;width:100%;height:auto;margin-top:4px;border-radius:4px;background:#fff;cursor:zoom-in}
 .lk{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
-.chip{display:inline-flex;align-items:center;max-width:100%;padding:2px 6px;border-radius:5px;background:var(--chip-bg);box-shadow:inset 0 0 0 .5px var(--sep);font-size:12.5px;line-height:1.4;color:var(--accent);text-align:left}
+.chip{display:inline-flex;align-items:center;max-width:100%;padding:2px 6px;border-radius:5px;background:var(--chip-bg);font-size:12.5px;line-height:1.4;color:var(--accent);text-align:left}
 .chip small{color:var(--label3);font-size:11.5px;margin-left:3px}
 .chip.ext{color:var(--label3);cursor:default}
 .flash{animation:flash 1.8s ease-out}
@@ -246,12 +246,9 @@ function chipHTML(ref, dir, self) {
   const arrow = dir === 'in' ? '← ' : '↗ ';
   if (ref.to) {
     const t = N[ref.to].t || 'Untitled';
-    let extra = '';
-    if (LEC[ref.to] !== LEC[self]) { const li = lecInfo(LEC[ref.to]); extra = '<small>· ' + li.num + ' ' + esc(li.name) + '</small>'; }
-    else if (t === N[self].t && P[ref.to]) extra = '<small>· ' + esc(nameOf(P[ref.to])) + '</small>';
-    return '<button class="chip" data-to="' + ref.to + '">' + arrow + esc(t) + extra + '</button>';
+    return '<button class="chip" data-to="' + ref.to + '">' + arrow + esc(t) + '</button>';
   }
-  return '<span class="chip ext">' + arrow + esc(ref.ext) + '<small>· ' + esc(ref.ch.replace(/^\d+#/, '')) + '</small></span>';
+  return '<span class="chip ext">' + arrow + esc(ref.ext) + '</span>';
 }
 function cardHTML(id) {
   const n = N[id], lv = LV[id], isRoot = LECS.includes(id);
