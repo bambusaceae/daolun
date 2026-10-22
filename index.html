@@ -213,6 +213,15 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .lrb{flex:1;min-width:0;display:block;text-align:left;padding:9px 4px}
 .lrb:disabled{opacity:.55;cursor:default}
 .rs{flex:none;margin-left:8px;font-size:12px;color:var(--accent)}
+.sy{padding:10px 4px 6px;border-bottom:.5px solid var(--sep)}
+.syr{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--label3)}
+.sybtn{flex:none;padding:4px 12px;border-radius:8px;background:var(--accent);color:var(--canvas);font-size:12px}
+.syd{margin-top:8px;font-size:12px}
+.syd summary{cursor:pointer;color:var(--label2);padding:2px 0}
+.syd input{display:block;width:100%;box-sizing:border-box;margin:8px 0;font:inherit;font-size:16px;color:var(--label);background:var(--field);border:0;border-radius:8px;padding:7px 9px;outline:0}
+.synote{font-size:11px}
+.icon{position:relative}
+.icon.unsynced::after{content:"";position:absolute;top:4px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--label3)}
 @media (prefers-reduced-motion:reduce){.flash,.lecs,.toc,.results,.mt,.backbar,.world.fade{animation:none}.card,.icon,.res,.lec,.tr{transition:none}}
 </style>
 
@@ -717,18 +726,26 @@ function barAct(el) {
   else if (a === 'cdel') cDel(el.dataset.cid, true);
   else if (a === 'crestore') cDel(el.dataset.cid, false);
   else if (a === 'cgo') { closeLog(); goTo(el.dataset.card); }
+  else if (a === 'sync') { sync(); }
+  else if (a === 'ssave') { const t = $('#stoken').value.trim(); if (t) sset(SK.token, t); sset(SK.repo, $('#srepo').value.trim()); $('#stoken').value = ''; syncSt = { busy: false, error: '' }; sset(SK.dirty, Date.now()); sync(); }
   else if (a === 'log') { $('#clog').hidden ? openLog() : closeLog(); }
 }
 
 // ---------- highlight: mark whole cards (stored on this device) ----------
-const HKEY = 'mn-highlights-' + META.key;
-let HL = new Set();
-try { HL = new Set(JSON.parse(localStorage.getItem(HKEY) || '[]')); } catch (e) {}
+const HKEY = 'mn-highlights-' + META.key, HMKEY = 'mn-hlm-' + META.key;
+let HLM = {}, HL = new Set();
+try {
+  const m = localStorage.getItem(HMKEY);
+  if (m) HLM = JSON.parse(m) || {};
+  else for (const id of JSON.parse(localStorage.getItem(HKEY) || '[]')) HLM[id] = { on: 1, t: Date.now() };
+} catch (e) {}
+function rebuildHL() { HL = new Set(Object.keys(HLM).filter(k => HLM[k].on)); }
+rebuildHL();
+function saveHL() { try { localStorage.setItem(HMKEY, JSON.stringify(HLM)); } catch (e) {} }
 function paintHL() { for (const k in EL) EL[k].classList.toggle('hl', HL.has(k)); }
 function toggleHL(id) {
   if (!id) return;
-  HL.has(id) ? HL.delete(id) : HL.add(id);
-  try { localStorage.setItem(HKEY, JSON.stringify([...HL])); } catch (e) {}
+  HLM[id] = { on: HL.has(id) ? 0 : 1, t: Date.now() }; rebuildHL(); saveHL(); markDirty();
   paintHL(); placeBar();
 }
 
@@ -757,7 +774,8 @@ function setFocus(id, silent) {
 const CKEY = 'mn-comments-' + META.key;
 let COMMENTS = [];
 try { COMMENTS = JSON.parse(localStorage.getItem(CKEY) || '[]') || []; } catch (e) {}
-function saveComments() { try { localStorage.setItem(CKEY, JSON.stringify(COMMENTS)); } catch (e) {} paintDots(); }
+function saveComments() { try { localStorage.setItem(CKEY, JSON.stringify(COMMENTS)); } catch (e) {} paintDots(); markDirty(); }
+const cu = c => Math.max(c.u || 0, c.t || 0, c.e || 0, c.del || 0);
 function paintDots() { const has = new Set(COMMENTS.filter(c => !c.del).map(c => c.card)); for (const k in EL) EL[k].classList.toggle('hasc', has.has(k)); }
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const pad = n => (n < 10 ? '0' : '') + n;
@@ -780,19 +798,20 @@ function renderComments() {
 }
 function cSave() {
   const ta = $('#ctext'), v = ta.value.trim(); if (!v) { ta.focus(); return; }
-  if (cEditing) { const c = COMMENTS.find(x => x.id === cEditing); if (c && c.text !== v) { c.text = v; c.e = Date.now(); } cEditing = null; }
-  else COMMENTS.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), card: cCard, text: v, t: Date.now() });
+  if (cEditing) { const c = COMMENTS.find(x => x.id === cEditing); if (c && c.text !== v) { c.text = v; c.e = Date.now(); c.u = c.e; } cEditing = null; }
+  else { const n = Date.now(); COMMENTS.push({ id: n.toString(36) + Math.random().toString(36).slice(2, 6), card: cCard, text: v, t: n, u: n }); }
   saveComments(); renderComments();
 }
 function cEdit(cid) { cEditing = cid; renderComments(); const ta = $('#ctext'); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }
 function cDel(cid, on) {
   const c = COMMENTS.find(x => x.id === cid); if (!c) return;
   if (on) c.del = Date.now(); else delete c.del;
+  c.u = Date.now();
   saveComments(); if (!$('#cpop').hidden) renderComments(); if (!$('#clog').hidden) renderLog();
 }
 
 // ---------- comment log: every comment with its time ----------
-function openLog() { closeComments(); closeSearch(); closeToc(); closeLecs(); renderLog(); $('#clog').hidden = false; $('#btnLog').setAttribute('aria-expanded', 'true'); }
+function openLog() { sync(); closeComments(); closeSearch(); closeToc(); closeLecs(); renderLog(); $('#clog').hidden = false; $('#btnLog').setAttribute('aria-expanded', 'true'); }
 function closeLog() { $('#clog').hidden = true; $('#btnLog').setAttribute('aria-expanded', 'false'); }
 function renderLog() {
   const live = COMMENTS.filter(c => !c.del).sort((a, b) => b.t - a.t), dead = COMMENTS.filter(c => c.del).sort((a, b) => b.del - a.del);
@@ -801,8 +820,81 @@ function renderLog() {
   if (!live.length) h += '<div class="hint">No comments yet</div>';
   for (const c of live) { const d = dstr(c.t); if (d !== day) { day = d; h += '<div class="sh"><span>' + d + '</span></div>'; } h += row(c, false); }
   if (dead.length) { h += '<div class="sh"><span>Deleted</span><span>' + dead.length + '</span></div>'; for (const c of dead) h += row(c, true); }
-  $('#clog').innerHTML = h;
+  $('#clog').innerHTML = syncHTML() + h;
 }
+
+
+// ---------- GitHub sync (private data repo: data.json) ----------
+const SK = { token: 'mn-sync-token', repo: 'mn-sync-repo', last: 'mn-sync-last', dirty: 'mn-sync-dirty' };
+const sget = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } };
+const sset = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+let syncSt = { busy: false, error: '' }, syncT = 0;
+const sOn = () => !!(sget(SK.token, '') && sget(SK.repo, ''));
+function syncLabel() {
+  if (!sOn()) return 'GitHub Sync is off';
+  if (syncSt.busy) return 'Syncing…';
+  if (syncSt.error) return 'Sync failed: ' + syncSt.error;
+  const t = +sget(SK.last, 0); if (!t) return 'Not synced yet';
+  const d = new Date(t), now = new Date();
+  return d.toDateString() === now.toDateString() ? 'Synced at ' + hm(t) : 'Synced ' + MON[d.getMonth()] + ' ' + d.getDate() + ', ' + hm(t);
+}
+function paintSync() {
+  const el = $('#sstat'); if (el) el.textContent = syncLabel();
+  $('#btnLog').classList.toggle('unsynced', sOn() && (!!+sget(SK.dirty, 0) || !!syncSt.error));
+}
+function markDirty() { sset(SK.dirty, Date.now()); paintSync(); clearTimeout(syncT); if (sOn()) syncT = setTimeout(sync, 1500); }
+function syncHTML() {
+  return '<div class="sy"><div class="syr"><span id="sstat">' + esc(syncLabel()) + '</span><button class="sybtn" data-act="sync">Sync</button></div>' +
+    '<details class="syd"' + (sOn() ? '' : ' open') + '><summary>GitHub Sync settings</summary>' +
+    '<input id="srepo" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="owner/repository" value="' + esc(sget(SK.repo, '')) + '">' +
+    '<input id="stoken" type="password" autocomplete="off" placeholder="' + (sget(SK.token, '') ? 'Saved · paste to replace' : 'Paste your fine-grained token') + '">' +
+    '<div class="syr"><span class="synote">Comments and highlights sync to this repository.</span><button class="sybtn" data-act="ssave">Save</button></div></details></div>';
+}
+const b64e = s => { const by = new TextEncoder().encode(s); let b = ''; for (const x of by) b += String.fromCharCode(x); return btoa(b); };
+const b64d = s => { const b = atob(s.replace(/\s/g, '')), by = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) by[i] = b.charCodeAt(i); return new TextDecoder().decode(by); };
+function ghApi(path, opts = {}) {
+  return fetch('https://api.github.com/repos/' + sget(SK.repo, '') + '/contents/' + path, {
+    ...opts, cache: 'no-store',
+    headers: { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + sget(SK.token, ''), 'X-GitHub-Api-Version': '2022-11-28', ...(opts.body ? { 'Content-Type': 'application/json' } : {}) }
+  });
+}
+function mergeRemote(r) {
+  for (const rc of (r.comments || [])) {
+    const lc = COMMENTS.find(c => c.id === rc.id);
+    if (!lc) COMMENTS.push(rc); else if (cu(rc) > cu(lc)) COMMENTS[COMMENTS.indexOf(lc)] = rc;
+  }
+  for (const [id, v] of Object.entries(r.highlights || {})) if (!HLM[id] || v.t > HLM[id].t) HLM[id] = v;
+  try { localStorage.setItem(CKEY, JSON.stringify(COMMENTS)); } catch (e) {}
+  saveHL(); rebuildHL(); paintDots(); paintHL(); placeBar();
+  if (!$('#clog').hidden) { const keep = $('#clog').scrollTop; renderLog(); $('#clog').scrollTop = keep; }
+}
+async function sync() {
+  if (!sOn() || syncSt.busy || !navigator.onLine) return;
+  syncSt = { busy: true, error: '' }; paintSync();
+  const started = Date.now();
+  try {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      let sha;
+      const get = await ghApi('data.json');
+      if (get.status === 200) { const j = await get.json(); sha = j.sha; mergeRemote(JSON.parse(b64d(j.content))); }
+      else if (get.status === 401) throw new Error('the token was rejected');
+      else if (get.status === 404) { const pr = await fetch('https://api.github.com/repos/' + sget(SK.repo, ''), { headers: { 'Authorization': 'Bearer ' + sget(SK.token, '') } }); if (pr.status !== 200) throw new Error('repository not found'); }
+      else throw new Error('GitHub error ' + get.status);
+      const body = { message: 'Update ' + new Date().toISOString(), content: b64e(JSON.stringify({ version: 1, comments: COMMENTS, highlights: HLM }, null, 1)) };
+      if (sha) body.sha = sha;
+      const put = await ghApi('data.json', { method: 'PUT', body: JSON.stringify(body) });
+      if (put.ok) { sset(SK.last, Date.now()); syncSt = { busy: false, error: '' }; if (+sget(SK.dirty, 0) <= started) sset(SK.dirty, 0); break; }
+      if ((put.status === 409 || put.status === 422) && attempt === 0) continue;
+      if (put.status === 403 || put.status === 404) throw new Error('the token can’t write to this repository');
+      throw new Error('GitHub error ' + put.status);
+    }
+  } catch (e) { syncSt = { busy: false, error: (e && e.message) || 'network error' }; }
+  if (syncSt.busy) syncSt.busy = false;
+  paintSync();
+  if (!syncSt.error && +sget(SK.dirty, 0) > started) sync();
+}
+addEventListener('online', () => sync());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sync(); });
 
 // ---------- keyboard: arrows move between cards ----------
 // ← parent · → child nearest in height · ↑/↓ previous/next card on the same level (siblings first, then across branches)
@@ -842,6 +934,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#v
 addEventListener('resize', () => { clampView(); apply(); });
 
 switchLecture(ROOT, { force: true });
+paintSync(); sync();
 })();
 
 </script>
