@@ -545,7 +545,8 @@ function doSearch() {
   if (!q) { out.innerHTML = '<div class="hint">Search titles and notes in all lectures</div>'; return; }
   const ql = q.toLowerCase(), res = [];
   for (const id in N) if (nameOf(id).toLowerCase().includes(ql) || plain[id].toLowerCase().includes(ql)) res.push(id);
-  if (!res.length) { out.innerHTML = '<div class="hint">No results for “' + esc(q) + '”</div>'; return; }
+  const cm = COMMENTS.filter(c => !c.del && c.text.toLowerCase().includes(ql)).sort((a, b) => b.t - a.t);
+  if (!res.length && !cm.length) { out.innerHTML = '<div class="hint">No results for “' + esc(q) + '”</div>'; return; }
   // grouped by lecture (current one first, then the book's order); inside a lecture, shallow levels first, then map order
   const order = [ROOT, ...LECS.filter(r => r !== ROOT)];
   const row = id => {
@@ -556,6 +557,10 @@ function doSearch() {
     return '<button class="res" data-go="' + id + '"><div class="rx"><div class="rt">' + mark(nameOf(id), q) + '</div>' + (chain.length ? '<div class="rp">' + esc(chain.join(' › ')) + '</div>' : '') + (snip ? '<div class="rs">' + mark(snip, q) + '</div>' : '') + '</div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
   };
   let h = '';
+  if (cm.length) h += '<div class="lgh"><b>Comments</b><span>' + cm.length + '</span></div><div class="group">' + cm.map(c => {
+    let snip = c.text, i = snip.toLowerCase().indexOf(ql); if (i > 24) snip = '…' + snip.slice(i - 20);
+    return '<button class="res" data-go="' + c.card + '"><div class="rx"><div class="rt">' + mark(snip, q) + '</div><div class="rp">' + esc(nameOf(c.card)) + ' · ' + esc(lecInfo(LEC[c.card]).name) + '</div></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
+  }).join('') + '</div>';
   for (const r of order) {
     const list = res.filter(id => LEC[id] === r).sort((a, b) => LV[a] - LV[b] || ORD[a] - ORD[b]);
     if (!list.length) continue;
