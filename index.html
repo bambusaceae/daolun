@@ -50,7 +50,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .icon svg{width:21px;height:21px}
 .ttlb{display:flex;align-items:baseline;gap:6px;min-width:0;max-width:100%;text-align:left}
 .ttlb svg{flex:none;width:10px;height:10px;color:var(--label3);align-self:center}
-.lecs{position:absolute;top:calc(var(--barh,90px) + 6px);left:8px;transform-origin:top left;width:68%;min-width:260px;max-width:420px;max-height:60%;z-index:11;overflow:auto;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;box-sizing:border-box;padding:4px 0}
+.lecs{position:absolute;top:calc(var(--barh,90px) + 6px);left:8px;transform-origin:top left;width:68%;min-width:260px;max-width:420px;max-height:60%;z-index:11;overflow:hidden;display:flex;flex-direction:column;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;box-sizing:border-box;padding:0}
 .lec{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 14px;position:relative;font-size:12.5px;line-height:17px}
 .lec + .lec::before{content:"";position:absolute;left:14px;right:0;top:0;border-top:.5px solid var(--sep)}
 .lec .ln{flex:none;width:18px;color:var(--label3);font-variant-numeric:tabular-nums}
@@ -180,8 +180,9 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .vbody.big img{width:1100px;max-width:none}
 
 /* ---------- action bar, comments, focus ---------- */
-.abar{position:absolute;z-index:12;display:flex;gap:2px;padding:3px;background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;white-space:nowrap}
-.abar button{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9px;font-size:13px;color:var(--accent)}
+.abar{position:absolute;z-index:12;display:flex;gap:0;padding:3px 10px;background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;white-space:nowrap}
+.abar button{display:flex;align-items:center;gap:4px;padding:5px 0;margin:0 4px;border-radius:9px;font-size:13px;color:var(--accent)}
+.abar button svg{width:18px;height:18px}
 .abar button:active{background:var(--cur-bg)}
 .abar button.on{background:var(--cur-bg)}
 .abar svg{width:17px;height:17px}
@@ -237,13 +238,41 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .cfa{display:flex;gap:8px}
 .cfa button{flex:1;padding:9px 0;border-radius:10px;background:var(--cur-bg);font-size:14px}
 .cfa .dan{background:#ff3b30;color:#fff}
+.locrow{display:flex;align-items:flex-start;gap:2px;margin-top:4px}
+.locrow .loc{flex:1;min-width:0;margin-top:0}
+.tocb{flex:none;width:22px;height:22px;margin-left:-4px;display:grid;place-items:center;color:var(--label3);border-radius:6px}
+.tocb svg{width:12px;height:12px;transition:transform .18s ease}
+.tocb[aria-expanded=true] svg{transform:rotate(180deg)}
+.icon[aria-expanded=true]{background:var(--cur-bg,var(--fill2))}
+.card.hasl::before{content:"↗";position:absolute;top:5px;right:8px;font-size:11px;line-height:1;font-weight:600;color:var(--label3)}
+.card.hasc.hasl::before{right:17px}
+.tgl{font-size:9.9px;line-height:12px;color:var(--label3);margin-bottom:2px;cursor:pointer}
+.trow{display:flex;align-items:center;gap:8px;width:100%;padding:10px 0;border-bottom:.5px solid var(--sep);text-align:left;font-size:13px}
+.trow:last-child{border-bottom:0}
+.tnm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tct{flex:none;font-size:11.5px;color:var(--label3);font-variant-numeric:tabular-nums}
+.tck{flex:none;width:14px;height:14px;color:var(--accent)}
+.tck svg{width:14px;height:14px;display:block}
+.cw.one{height:32px}
+.cw.one input{display:block;width:136.75%;height:136.75%;box-sizing:border-box;font:inherit;font-size:16px;color:var(--label);background:none;border:0;padding:0 13.7px;outline:0;transform:scale(.73125);transform-origin:0 0}
+.lkr{display:flex;align-items:center;gap:8px}
+.lkb{flex:1;min-width:0;text-align:left}
+.addl{flex:1;padding:8px 0;border-radius:10px;background:var(--cur-bg);font-size:13px;text-align:center}
+.seg{flex:none;display:flex;gap:4px;padding:8px 10px 6px;border-bottom:.5px solid var(--sep)}
+.lbody{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:4px 0}
+.seg button{flex:1;padding:5px 0;border-radius:8px;font-size:12px;color:var(--label2)}
+.seg button[aria-pressed=true]{background:var(--cur-bg,var(--fill2));color:var(--label);font-weight:600}
+.lecs .tree{font-size:12.5px;line-height:18px;--mid:10px;padding:4px 14px 10px}
+.lecs .tr{padding:1px 5px;margin-left:-5px;color:var(--label2)}
+.lecs .tr.v1,.lecs .tr.v2{color:var(--label);font-weight:600}
+.lecs .tr.cur{color:var(--label);font-weight:500}
 @media (prefers-reduced-motion:reduce){.flash,.lecs,.toc,.results,.mt,.backbar,.world.fade{animation:none}.card,.icon,.res,.lec,.tr{transition:none}}
 </style>
 
 <header class="bar">
   <div class="nav" id="nav">
     <div class="ttl" id="ttl"></div>
-    <button class="icon" id="btnToc" aria-label="Outline" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h9M5.5 5.5v12.5M5.5 12h4M5.5 18h4M12 12h8M12 18h8"/></svg></button>
+    <button class="icon" id="btnTag" data-act="tags" aria-label="Tags" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7a1 1 0 0 1 .7.3l7.6 7.6a1 1 0 0 1 0 1.4l-7.7 7.7a1 1 0 0 1-1.4 0l-7.6-7.6a1 1 0 0 1-.3-.7z"/><circle cx="8.3" cy="8.3" r="1.3"/></svg></button>
     <button class="icon" id="btnLog" data-act="log" aria-label="Comments" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg></button>
     <button class="icon" id="btnSearch" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg></button>
   </div>
@@ -264,14 +293,17 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
   </div>
     <div id="rlist"></div>
   </div>
-  <div class="toc" id="toc" hidden></div>
   <div class="abar" id="abar" hidden>
-    <button data-act="comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Comment</button>
-    <button data-act="hl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5-8.5 8.5H6v-5z"/><path d="M4 21h16"/></svg><span>Highlight</span></button>
-    <button data-act="focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"/><circle cx="12" cy="12" r="2.5"/></svg>Focus</button>
+    <button data-act="hl" aria-label="Highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5-8.5 8.5H6v-5z"/><path d="M4 21h16"/></svg>Highlight</button>
+    <button data-act="comment" aria-label="Comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Comment</button>
+    <button data-act="tag" aria-label="Tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7a1 1 0 0 1 .7.3l7.6 7.6a1 1 0 0 1 0 1.4l-7.7 7.7a1 1 0 0 1-1.4 0l-7.6-7.6a1 1 0 0 1-.3-.7z"/><circle cx="8.3" cy="8.3" r="1.3"/></svg>Tag</button>
   </div>
+
   <div class="fpill" id="fpill" hidden><span id="fpillt"></span><button data-act="unfocus" aria-label="Exit focus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>
   <div class="cpop" id="cpop" hidden></div>
+  <div class="cpop" id="tpop" hidden></div>
+  <div class="cpop" id="lpop" hidden></div>
+  <div class="clog" id="tagwin" hidden></div>
   <div class="clog" id="clog" hidden></div>
   <div class="cfm" id="cfm" hidden></div>
   <div class="lecs" id="lecs" hidden></div>
@@ -291,6 +323,7 @@ const PART = {}; DATA.lectures.forEach(l => PART[l.root] = l.part);
 const $ = s => document.querySelector(s);
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const GX = 24;
+const VROOTS = new Set(), oid = id => (N[id] && N[id]._o) || id, isRoot = id => LECS.includes(id) || VROOTS.has(id);
 
 // ---------- tree maps for every lecture ----------
 const P = {}, LV = {}, ORD = {}, LEC = {}, IDS = {};
@@ -300,14 +333,15 @@ for (const r of LECS) {
   (function walk(id, lv) { LV[id] = lv; ORD[id] = o++; LEC[id] = r; IDS[r].push(id); for (const k of N[id].k) { P[k] = id; walk(k, lv + 1); } })(r, 1);
 }
 function lecInfo(r) {
+  if (VROOTS.has(r)) return { num: '', name: N[r].t, part: 'Tag' };
   const m = N[r].t.match(/^(\d+)#(\d+)\s*(.*)$/);
   return { num: m ? m[2] : '', name: m ? m[3] : N[r].t, part: PART[r] || '' };
 }
 let ROOT = LECS[0];
-const nameOf = id => LECS.includes(id) ? lecInfo(id).name : (N[id].t || 'Untitled');
+const nameOf = id => isRoot(id) ? lecInfo(id).name : (N[id].t || 'Untitled');
 const plain = {};
 for (const id in N) plain[id] = N[id].b.filter(b => !b.img).map(b => b.h.replace(/<br>/g, ' ').replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')).join(' ');
-const labelOf = id => LECS.includes(id) ? lecInfo(id).name : (N[id].t || (plain[id].slice(0, 16) + (plain[id].length > 16 ? '…' : '')) || 'Untitled');
+const labelOf = id => isRoot(id) ? lecInfo(id).name : (N[id].t || (plain[id].slice(0, 16) + (plain[id].length > 16 ? '…' : '')) || 'Untitled');
 
 // ---------- cards ----------
 function chipHTML(ref, dir, self) {
@@ -319,12 +353,13 @@ function chipHTML(ref, dir, self) {
   return '<span class="chip ext">' + arrow + esc(ref.ext) + '</span>';
 }
 function cardHTML(id) {
-  const n = N[id], lv = LV[id], isRoot = LECS.includes(id);
+  const n = N[id], lv = LV[id], isRt = isRoot(id);
   const cls = ['card', 'l' + Math.min(lv, 4)];
-  if (!n.t && !isRoot) cls.push('untitled');
+  if (!n.t && !isRt) cls.push('untitled');
   if (!n.b.length && !n.l.length && !n.bl.length) cls.push('bare');
   let h = '<div class="' + cls.join(' ') + '" id="c-' + id + '" data-id="' + id + '">';
-  if (n.t || isRoot) h += '<div class="ct">' + esc(nameOf(id)) + '</div>';
+  if (n._o) h += '<div class="tgl" data-orig="' + n._o + '">' + esc(lecInfo(LEC[n._o]).name) + '</div>';
+  if (n.t || isRt) h += '<div class="ct">' + esc(nameOf(id)) + '</div>';
   let b = '';
   for (const x of n.b) b += x.img ? '<img alt="" src="' + x.img + '" width="' + x.iw + '" height="' + x.ih + '">' : '<p>' + x.h.replace(/(<br>\s*){2,}/g, '<br>') + '</p>';
   if (b) h += '<div class="cb">' + b + '</div>';
@@ -516,7 +551,7 @@ function renderTitle() {
 }
 function switchLecture(r, opts = {}) {
   if (r === ROOT && !opts.force) return;
-  closeToc(); closeLecs(); clearJump(); closeComments(); closeLog(); closeConfirm(); setFocus(null, true); barOn = false;
+  closeToc(); closeLecs(); clearJump(); closeComments(); closeLog(); closeTagPop(); closeLinks(); closeTags(); closeConfirm(); setFocus(null, true); barOn = false;
   ROOT = r; tocBuilt = false; SEL = null;
   renderTitle(); buildCards(); layout();
   const v = VIEWS[ROOT];
@@ -526,10 +561,18 @@ function switchLecture(r, opts = {}) {
   world.classList.remove('fade'); void world.offsetWidth; world.classList.add('fade');
   if (!opts.target) select(ROOT);
 }
-function openLecs() {
+let lecTab = 'lec';
+function openLecs(tab) {
+  if (tab) lecTab = tab;
   closeToc();
-  $('#lecs').innerHTML = LECS.map(r => { const li = lecInfo(r); return '<button class="lec" data-lec="' + r + '" aria-current="' + (r === ROOT) + '"><span class="ln">' + li.num + '</span><span class="lt">' + esc(li.name) + '<span class="lp">' + esc(li.part) + ' · ' + IDS[r].length + ' cards</span></span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 5 9.5 10 3"/></svg></button>'; }).join('');
-  $('#lecs').hidden = false; $('#btnLec').setAttribute('aria-expanded', 'true');
+  const L = $('#lecs'), ob = L.querySelector('.lbody'), keep = ob ? ob.scrollTop : 0;
+  const seg = '<div class="seg"><button data-act="lectab" data-tab="lec" aria-pressed="' + (lecTab === 'lec') + '">Chapter</button><button data-act="lectab" data-tab="out" aria-pressed="' + (lecTab === 'out') + '">Outline</button></div>';
+  let body;
+  if (lecTab === 'out') body = '<div class="tree">' + treeHTML(ROOT, x => N[x].k) + '</div>';
+  else body = LECS.map(r => { const li = lecInfo(r); return '<button class="lec" data-lec="' + r + '" aria-current="' + (r === ROOT) + '"><span class="ln">' + li.num + '</span><span class="lt">' + esc(li.name) + '<span class="lp">' + esc(li.part) + ' · ' + IDS[r].length + ' cards</span></span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 5 9.5 10 3"/></svg></button>'; }).join('');
+  L.innerHTML = seg + '<div class="lbody">' + body + '</div>'; const LB = L.querySelector('.lbody');
+  L.hidden = false; $('#btnLec').setAttribute('aria-expanded', 'true');
+  if (lecTab === 'out') scrollInto(LB, markCur(L), 0.35); else LB.scrollTop = keep;
 }
 function closeLecs() { $('#lecs').hidden = true; const b = $('#btnLec'); if (b) b.setAttribute('aria-expanded', 'false'); }
 
@@ -567,9 +610,9 @@ function mark(str, q) { const i = str.toLowerCase().indexOf(q.toLowerCase()); re
 function doSearch() {
   const q = $('#q').value.trim(), out = $('#rlist');
   $('#clear').hidden = !q;
-  if (!q) { out.innerHTML = '<div class="hint">Search titles and notes in all lectures</div>'; return; }
+  if (!q) { out.innerHTML = '<div class="hint">' + (linkPick ? 'Search for the card to link to' : 'Search titles and notes in all lectures') + '</div>'; return; }
   const ql = q.toLowerCase(), res = [];
-  for (const id in N) if (nameOf(id).toLowerCase().includes(ql) || plain[id].toLowerCase().includes(ql)) res.push(id);
+  for (const id in N) if (!N[id].v && (nameOf(id).toLowerCase().includes(ql) || plain[id].toLowerCase().includes(ql))) res.push(id);
   const cm = COMMENTS.filter(c => !c.del && c.text.toLowerCase().includes(ql)).sort((a, b) => b.t - a.t);
   if (!res.length && !cm.length) { out.innerHTML = '<div class="hint">No results for “' + esc(q) + '”</div>'; return; }
   // grouped by lecture (current one first, then the book's order); inside a lecture, shallow levels first, then map order
@@ -598,11 +641,13 @@ function doSearch() {
 
 function openSearch() {
   closeToc(); closeLecs();
+  $('#q').placeholder = linkPick ? 'Link to…' : 'Search';
   $('#results').hidden = false; $('#btnSearch').setAttribute('aria-expanded', 'true');
   $('#results').scrollTop = 0; doSearch(); $('#q').focus(); { const q = $('#q'); q.setSelectionRange(q.value.length, q.value.length); }
 }
 function closeSearch() {
   if ($('#results').hidden) return;
+  linkPick = null; $('#q').placeholder = 'Search';
   $('#q').blur();
   $('#results').hidden = true; $('#btnSearch').setAttribute('aria-expanded', 'false');
 }
@@ -667,18 +712,10 @@ function select(id) {
   loc.scrollLeft = loc.scrollWidth;
   const d = vp.getBoundingClientRect().top - top0;
   if (d) { ty -= d; apply(); }
-  if (!$('#toc').hidden) markCur($('#toc'));
+  if (!$('#lecs').hidden && lecTab === 'out') markCur($('#lecs'));
 }
 let tocBuilt = false;
-function openToc() {
-  closeLecs();
-  const toc = $('#toc');
-  if (!tocBuilt) { toc.innerHTML = '<div class="tree">' + treeHTML(ROOT, x => N[x].k) + '</div>'; tocBuilt = true; }
-  toc.hidden = false; $('#btnToc').setAttribute('aria-expanded', 'true');
-  scrollInto(toc, markCur(toc), 0.35);
-}
-function closeToc() { $('#toc').hidden = true; $('#btnToc').setAttribute('aria-expanded', 'false'); }
-$('#btnToc').onclick = () => $('#toc').hidden ? openToc() : closeToc();
+function closeToc() {}
 
 // ---------- link trail (same lecture only) ----------
 function drawJump(from, chip, to) {
@@ -695,11 +732,13 @@ document.addEventListener('click', e => {
   const t = e.target; let el;
   const sel = getSelection(); if (sel && !sel.isCollapsed && t.closest('.card') && sel.toString().trim()) return; // just selected text
   if (!$('#cfm').hidden && !t.closest('.cfb')) { closeConfirm(); return; }
-  if (!$('#cpop').hidden && !t.closest('.cpop,.abar,.cfb')) { closeComments(); return; }
+  if (!$('#cpop').hidden && !t.closest('#cpop,.abar,.cfb')) { closeComments(); return; }
+  if (!$('#tpop').hidden && !t.closest('#tpop,.abar,.cfb')) { closeTagPop(); return; }
+  if (!$('#lpop').hidden && !t.closest('#lpop,.abar,.cfb')) { closeLinks(); return; }
+  if (!$('#tagwin').hidden && !t.closest('#tagwin,#btnTag')) { closeTags(); return; }
   if (!$('#clog').hidden && !t.closest('.clog,#btnLog,.cfb')) { closeLog(); return; }
   if ((el = t.closest('[data-act]'))) { barAct(el); return; }
   if (!$('#lecs').hidden && !t.closest('.lecs') && !t.closest('#btnLec')) { closeLecs(); return; }
-  if (!$('#toc').hidden && !t.closest('.toc') && !t.closest('#btnToc')) { closeToc(); return; }
   if (!$('#results').hidden && !t.closest('.results') && !t.closest('.bar')) { closeSearch(); return; }
   if ((el = t.closest('#btnLec'))) { $('#lecs').hidden ? openLecs() : closeLecs(); return; }
   if ((el = t.closest('.lec'))) { closeLecs(); switchLecture(el.dataset.lec); return; }
@@ -710,9 +749,13 @@ document.addEventListener('click', e => {
     if (LEC[to] === ROOT) drawJump(from, el, to);
     goTo(to); showBack(); return;
   }
-  if ((el = t.closest('.res'))) { closeSearch(); goTo(el.dataset.go); return; }
-  if ((el = t.closest('.tr'))) { const id = el.dataset.t, fromToc = !!el.closest('.toc'); closeToc(); goTo(id, { flash: fromToc }); return; }
+  if ((el = t.closest('.res'))) {
+    if (linkPick) { const from = linkPick, to = oid(el.dataset.go); closeSearch(); addLink(from, to); openLinks(from); return; }
+    closeSearch(); goTo(el.dataset.go); return;
+  }
+  if ((el = t.closest('.tr'))) { const id = el.dataset.t, fromToc = !!el.closest('.lecs'); closeLecs(); goTo(id, { flash: fromToc }); return; }
   if (t.tagName === 'IMG' && t.closest('.cb')) { $('#vbody').className = 'vbody'; $('#vbody').innerHTML = '<img alt="" src="' + t.src + '">'; $('#vcap').textContent = 'Tap image to zoom'; $('#viewer').hidden = false; return; }
+  if ((el = t.closest('.tgl'))) { const from = el.closest('.card').dataset.id; backStack.push({ lec: ROOT, tx, ty, s, sel: from, label: nameOf(from) }); goTo(el.dataset.orig); showBack(); return; }
   if ((el = t.closest('.card'))) { select(el.dataset.id); barOn = true; placeBar(); return; }
   if (t.closest('#vp') && !t.closest('.results,.toc,.lecs,.back,.abar,.cpop,.clog,.fpill')) { barOn = false; placeBar(); hideLoc(); clearJump(); }
 });
@@ -721,7 +764,7 @@ document.addEventListener('click', e => {
 let barOn = false;
 const abar = $('#abar');
 function placeBar() {
-  if (barOn && SEL) { const hb = abar.querySelector('[data-act=hl]'); if (hb) { const on = HL.has(SEL); hb.classList.toggle('on', on); hb.lastChild.textContent = on ? 'Unhighlight' : 'Highlight'; } }
+  if (barOn && SEL) { const hb = abar.querySelector('[data-act=hl]'); if (hb) { const on = HL.has(oid(SEL)); hb.classList.toggle('on', on); hb.lastChild.textContent = on ? 'Unhighlight' : 'Highlight'; } }
   if (!barOn || !SEL || !EL[SEL] || LEC[SEL] !== ROOT) { abar.hidden = true; return; }
   abar.hidden = false;
   const p = POS[SEL], vw = vp.clientWidth, bw = abar.offsetWidth, bh = abar.offsetHeight;
@@ -733,8 +776,19 @@ function placeBar() {
 }
 function barAct(el) {
   const a = el.dataset.act;
-  if (a === 'comment') { barOn = false; placeBar(); openComments(SEL); }
-  else if (a === 'hl') { toggleHL(SEL); }
+  if (a === 'comment') { barOn = false; placeBar(); openComments(oid(SEL)); }
+  else if (a === 'lectab') { openLecs(el.dataset.tab); }
+  else if (a === 'link') { barOn = false; placeBar(); openLinks(oid(SEL)); }
+  else if (a === 'tag') { barOn = false; placeBar(); openTagPop(oid(SEL)); }
+  else if (a === 'tags') { $('#tagwin').hidden ? openTags() : closeTags(); }
+  else if (a === 'hl') { toggleHL(oid(SEL)); }
+  else if (a === 'ttog') { setTag(tCard, el.dataset.tag, !tagsOf(tCard).includes(el.dataset.tag)); renderTagPop(); }
+  else if (a === 'tadd') { tAdd(); }
+  else if (a === 'topen') { openTagMap(el.dataset.tag); }
+  else if (a === 'lkgo') { const to = el.dataset.to, from = lCard; closeLinks(); backStack.push({ lec: ROOT, tx, ty, s, sel: SEL, label: nameOf(SEL || from) }); goTo(to); showBack(); }
+  else if (a === 'lkadd') { linkPick = lCard; closeLinks(); openSearch(); }
+  else if (a === 'lkdel') { askDelLink(el.dataset.cid); }
+  else if (a === 'lkdelyes') { const id = el.dataset.cid; closeConfirm(); const l = LINKS.find(x => x.id === id); if (l) { l.del = Date.now(); l.u = l.del; saveLinks(); if (!$('#lpop').hidden) renderLinks(); } }
   else if (a === 'focus') { barOn = false; placeBar(); setFocus(SEL); }
   else if (a === 'unfocus') setFocus(null);
   else if (a === 'cclose') closeComments();
@@ -763,7 +817,7 @@ try {
 function rebuildHL() { HL = new Set(Object.keys(HLM).filter(k => HLM[k].on)); }
 rebuildHL();
 function saveHL() { try { localStorage.setItem(HMKEY, JSON.stringify(HLM)); } catch (e) {} }
-function paintHL() { for (const k in EL) EL[k].classList.toggle('hl', HL.has(k)); }
+function paintHL() { for (const k in EL) EL[k].classList.toggle('hl', HL.has(oid(k))); }
 function toggleHL(id) {
   if (!id) return;
   HLM[id] = { on: HL.has(id) ? 0 : 1, t: Date.now() }; rebuildHL(); saveHL(); markDirty();
@@ -797,7 +851,11 @@ let COMMENTS = [];
 try { COMMENTS = JSON.parse(localStorage.getItem(CKEY) || '[]') || []; } catch (e) {}
 function saveComments() { try { localStorage.setItem(CKEY, JSON.stringify(COMMENTS)); } catch (e) {} paintDots(); markDirty(); }
 const cu = c => Math.max(c.u || 0, c.t || 0, c.e || 0, c.del || 0);
-function paintDots() { const has = new Set(COMMENTS.filter(c => !c.del).map(c => c.card)); for (const k in EL) EL[k].classList.toggle('hasc', has.has(k)); }
+function paintDots() {
+  const has = new Set(COMMENTS.filter(c => !c.del).map(c => c.card)), lk = new Set();
+  for (const l of LINKS) if (!l.del) { lk.add(l.from); lk.add(l.to); }
+  for (const k in EL) { EL[k].classList.toggle('hasc', has.has(oid(k))); EL[k].classList.toggle('hasl', lk.has(oid(k))); }
+}
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const pad = n => (n < 10 ? '0' : '') + n;
 const hm = t => { const d = new Date(t); return pad(d.getHours()) + ':' + pad(d.getMinutes()); };
@@ -805,7 +863,7 @@ const dstr = t => { const d = new Date(t); return MON[d.getMonth()] + ' ' + d.ge
 const nl = s => esc(s).replace(/\n/g, '<br>');
 let cCard = null, cEditing = null;
 function openComments(id) {
-  cCard = id; cEditing = null; closeLog(); closeSearch(); closeToc(); closeLecs();
+  cCard = id; cEditing = null; closeLog(); closeSearch(); closeToc(); closeLecs(); closeTagPop(); closeLinks(); closeTags();
   renderComments(); $('#cpop').hidden = false;
 }
 function closeComments() { closeConfirm(); $('#cpop').hidden = true; cCard = null; cEditing = null; }
@@ -862,7 +920,7 @@ function cDel(cid, on) {
 }
 
 // ---------- comment log: every comment with its time ----------
-function openLog() { sync(); closeComments(); closeSearch(); closeToc(); closeLecs(); renderLog(); $('#clog').hidden = false; $('#btnLog').setAttribute('aria-expanded', 'true'); }
+function openLog() { sync(); closeComments(); closeTagPop(); closeLinks(); closeTags(); closeSearch(); closeToc(); closeLecs(); renderLog(); $('#clog').hidden = false; $('#btnLog').setAttribute('aria-expanded', 'true'); }
 function closeLog() { $('#clog').hidden = true; $('#btnLog').setAttribute('aria-expanded', 'false'); }
 function renderLog() {
   const live = COMMENTS.filter(c => !c.del).sort((a, b) => b.t - a.t), dead = COMMENTS.filter(c => c.del).sort((a, b) => b.del - a.del);
@@ -874,6 +932,101 @@ function renderLog() {
   $('#clog').innerHTML = syncHTML() + h;
 }
 
+
+// ---------- links you add yourself (kept apart from the original double-links) ----------
+const LKEY = 'mn-links-' + META.key;
+let LINKS = [], linkPick = null, lCard = null;
+try { LINKS = JSON.parse(localStorage.getItem(LKEY) || '[]') || []; } catch (e) {}
+function saveLinks() { try { localStorage.setItem(LKEY, JSON.stringify(LINKS)); } catch (e) {} paintDots(); markDirty(); }
+function addLink(from, to) {
+  if (!from || !to || from === to) return;
+  if (LINKS.some(l => !l.del && l.from === from && l.to === to)) return;
+  const n = Date.now(); LINKS.push({ id: n.toString(36) + Math.random().toString(36).slice(2, 6), from, to, t: n, u: n }); saveLinks();
+}
+function openLinks(id) {
+  lCard = id; closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeTagPop(); closeTags();
+  renderLinks(); $('#lpop').hidden = false;
+}
+function closeLinks() { closeConfirm(); $('#lpop').hidden = true; lCard = null; }
+function renderLinks() {
+  const mine = LINKS.filter(l => !l.del && (l.from === lCard || l.to === lCard)).sort((a, b) => b.t - a.t);
+  $('#lpop').innerHTML =
+    '<div class="ch"><b>' + esc(labelOf(lCard)) + '</b><button class="cx" data-act="cclose" aria-label="Close"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>' +
+    '<div class="cl">' + (mine.length ? mine.map(l => {
+      const other = l.from === lCard ? l.to : l.from;
+      return '<div class="ci lkr"><button class="lkb" data-act="lkgo" data-to="' + other + '"><div class="cm">' + (l.from === lCard ? '↗ ' : '← ') + esc(labelOf(other)) + '</div><div class="cmeta"><span>' + esc(lecInfo(LEC[other]).name) + '</span></div></button><button class="cx" data-act="lkdel" data-cid="' + l.id + '" aria-label="Remove link"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>';
+    }).join('') : '<div class="hint">No links yet</div>') + '</div>' +
+    '<div class="cf"><button class="addl" data-act="lkadd">Add link</button></div>';
+}
+function askDelLink(cid) {
+  const l = LINKS.find(x => x.id === cid); if (!l) return;
+  $('#cfm').innerHTML = '<div class="cfb"><b>Remove this link?</b><p>' + esc(labelOf(l.from)) + ' ↗ ' + esc(labelOf(l.to)) + '</p><div class="cfa"><button data-act="cno">Cancel</button><button class="dan" data-act="lkdelyes" data-cid="' + cid + '">Remove</button></div></div>';
+  $('#cfm').hidden = false;
+}
+
+// ---------- tags: each tag opens as its own map ----------
+const TKEY = 'mn-tags-' + META.key;
+let TGM = {}, tCard = null, TAGNAME = null;
+try { TGM = JSON.parse(localStorage.getItem(TKEY) || '{}') || {}; } catch (e) {}
+const tsplit = k => { const i = k.indexOf('|'); return [k.slice(0, i), k.slice(i + 1)]; };
+function saveTags() { try { localStorage.setItem(TKEY, JSON.stringify(TGM)); } catch (e) {} markDirty(); refreshTagView(); if (!$('#tagwin').hidden) renderTags(); }
+function tagList() { const m = {}; for (const k in TGM) if (TGM[k].on) { const [c, t] = tsplit(k); (m[t] = m[t] || []).push(c); } return m; }
+const tagsOf = card => Object.keys(TGM).filter(k => TGM[k].on && tsplit(k)[0] === card).map(k => tsplit(k)[1]);
+function setTag(card, tag, on) { TGM[card + '|' + tag] = { on: on ? 1 : 0, t: Date.now() }; saveTags(); }
+const tickSvg = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 5 9.5 10 3"/></svg>';
+function openTagPop(id) {
+  tCard = id; closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeLinks(); closeTags();
+  renderTagPop(); $('#tpop').hidden = false;
+}
+function closeTagPop() { $('#tpop').hidden = true; tCard = null; }
+function renderTagPop() {
+  const all = tagList(), names = Object.keys(all).sort((a, b) => a.localeCompare(b)), mine = new Set(tagsOf(tCard));
+  const old = $('#tin'), draft = old ? old.value : '';
+  $('#tpop').innerHTML =
+    '<div class="ch"><b>' + esc(labelOf(tCard)) + '</b><button class="cx" data-act="cclose" aria-label="Close"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>' +
+    '<div class="cl">' + (names.length ? names.map(n => '<button class="trow" data-act="ttog" data-tag="' + esc(n) + '"><span class="tnm">' + esc(n) + '</span><span class="tct">' + all[n].length + '</span><span class="tck">' + (mine.has(n) ? tickSvg : '') + '</span></button>').join('') : '<div class="hint">No tags yet</div>') + '</div>' +
+    '<div class="cf"><div class="cw one"><input id="tin" type="text" placeholder="New tag" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="New tag"></div><button class="cadd" data-act="tadd" aria-label="Add tag">' + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/></svg>' + '</button></div>';
+  const ti = $('#tin'); ti.value = draft;
+  ti.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); tAdd(); } });
+}
+function tAdd() {
+  const ti = $('#tin'); let v = ti.value.trim().replace(/\|/g, ''); if (!v) { ti.focus(); return; }
+  const ex = Object.keys(tagList()).find(n => n.toLowerCase() === v.toLowerCase()); if (ex) v = ex;
+  ti.value = ''; setTag(tCard, v, true); renderTagPop();
+}
+function openTags() {
+  closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeLinks(); closeTagPop();
+  renderTags(); $('#tagwin').hidden = false; $('#btnTag').setAttribute('aria-expanded', 'true');
+}
+function closeTags() { $('#tagwin').hidden = true; $('#btnTag').setAttribute('aria-expanded', 'false'); }
+function renderTags() {
+  const all = tagList(), names = Object.keys(all).sort((a, b) => a.localeCompare(b));
+  $('#tagwin').innerHTML = '<div class="lh"><b>Tags</b><span>' + names.length + '</span></div>' + (names.length ? '<div class="group">' + names.map(n =>
+    '<button class="res" data-act="topen" data-tag="' + esc(n) + '"><div class="rx"><div class="rt">' + esc(n) + '</div><div class="rp">' + all[n].length + ' card' + (all[n].length > 1 ? 's' : '') + '</div></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>').join('') + '</div>'
+    : '<div class="hint">No tags yet. Tap a card, then the tag button.</div>');
+}
+function buildTagView(name) {
+  const R = 'tgr', cards = (tagList()[name] || []).slice().sort((a, b) => ORD[a] - ORD[b]);
+  for (const id of (IDS[R] || [])) if (id !== R) { delete N[id]; delete P[id]; delete LV[id]; delete ORD[id]; delete LEC[id]; delete plain[id]; }
+  VROOTS.add(R);
+  N[R] = { t: name, b: [], l: [], bl: [], k: [], v: 1 }; LV[R] = 1; LEC[R] = R; ORD[R] = -1; plain[R] = ''; IDS[R] = [R];
+  cards.forEach((c, i) => {
+    const id = 'tgc' + i, n = N[c];
+    N[id] = { t: n.t, b: n.b, l: n.l, bl: n.bl, k: [], v: 1, _o: c };
+    P[id] = R; LV[id] = 3; ORD[id] = ORD[c]; LEC[id] = R; plain[id] = plain[c];
+    N[R].k.push(id); IDS[R].push(id);
+  });
+  return cards.length;
+}
+function openTagMap(name) {
+  TAGNAME = name; buildTagView(name); delete VIEWS.tgr; closeTags();
+  switchLecture('tgr', { force: true });
+}
+function refreshTagView() {
+  if (ROOT !== 'tgr' || !TAGNAME) return;
+  if (!buildTagView(TAGNAME)) { TAGNAME = null; switchLecture(LECS[0], { force: true }); return; }
+  tocBuilt = false; SEL = null; buildCards(); layout(); clampView(); apply(); select(ROOT);
+}
 
 // ---------- GitHub sync (private data repo: data.json) ----------
 const SK = { token: 'mn-sync-token', repo: 'mn-sync-repo', last: 'mn-sync-last', dirty: 'mn-sync-dirty' };
@@ -914,9 +1067,13 @@ function mergeRemote(r) {
     const lc = COMMENTS.find(c => c.id === rc.id);
     if (!lc) COMMENTS.push(rc); else if (cu(rc) > cu(lc)) COMMENTS[COMMENTS.indexOf(lc)] = rc;
   }
+  for (const rl of (r.links || [])) { const ll = LINKS.find(x => x.id === rl.id); if (!ll) LINKS.push(rl); else if (cu(rl) > cu(ll)) LINKS[LINKS.indexOf(ll)] = rl; }
+  for (const [k, v] of Object.entries(r.tags || {})) if (!TGM[k] || v.t > TGM[k].t) TGM[k] = v;
+  try { localStorage.setItem(LKEY, JSON.stringify(LINKS)); localStorage.setItem(TKEY, JSON.stringify(TGM)); } catch (e) {}
   for (const [id, v] of Object.entries(r.highlights || {})) if (!HLM[id] || v.t > HLM[id].t) HLM[id] = v;
   try { localStorage.setItem(CKEY, JSON.stringify(COMMENTS)); } catch (e) {}
-  saveHL(); rebuildHL(); paintDots(); paintHL(); placeBar();
+  saveHL(); rebuildHL(); paintDots(); paintHL(); placeBar(); refreshTagView();
+  if (!$('#tagwin').hidden) renderTags();
   if (!$('#clog').hidden) { const keep = $('#clog').scrollTop; renderLog(); $('#clog').scrollTop = keep; }
 }
 async function sync() {
@@ -931,7 +1088,7 @@ async function sync() {
       else if (get.status === 401) throw new Error('the token was rejected');
       else if (get.status === 404) { const pr = await fetch('https://api.github.com/repos/' + sget(SK.repo, ''), { headers: { 'Authorization': 'Bearer ' + sget(SK.token, '') } }); if (pr.status !== 200) throw new Error('repository not found'); }
       else throw new Error('GitHub error ' + get.status);
-      const body = { message: 'Update ' + new Date().toISOString(), content: b64e(JSON.stringify({ version: 1, comments: COMMENTS, highlights: HLM }, null, 1)) };
+      const body = { message: 'Update ' + new Date().toISOString(), content: b64e(JSON.stringify({ version: 1, comments: COMMENTS, highlights: HLM, links: LINKS, tags: TGM }, null, 1)) };
       if (sha) body.sha = sha;
       const put = await ghApi('data.json', { method: 'PUT', body: JSON.stringify(body) });
       if (put.ok) { sset(SK.last, Date.now()); syncSt = { busy: false, error: '' }; if (+sget(SK.dirty, 0) <= started) sset(SK.dirty, 0); break; }
@@ -977,11 +1134,11 @@ function moveSel(key) {
 }
 document.addEventListener('keydown', e => {
   if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
-  if (FSET || e.target.closest && e.target.closest('input,textarea') || !$('#cfm').hidden || !$('#cpop').hidden || !$('#clog').hidden || !$('#viewer').hidden || !$('#results').hidden || !$('#toc').hidden || !$('#lecs').hidden) return;
+  if (FSET || e.target.closest && e.target.closest('input,textarea') || document.querySelector('.cpop:not([hidden]),.clog:not([hidden])') || !$('#cfm').hidden || !$('#cpop').hidden || !$('#clog').hidden || !$('#viewer').hidden || !$('#results').hidden || !$('#toc').hidden || !$('#lecs').hidden) return;
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   e.preventDefault(); clearJump(); moveSel(e.key);
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#cfm').hidden) closeConfirm(); else if (!$('#viewer').hidden) $('#vclose').click(); else if (!$('#cpop').hidden) closeComments(); else if (!$('#clog').hidden) closeLog(); else if (!$('#lecs').hidden) closeLecs(); else if (!$('#toc').hidden) closeToc(); else closeSearch(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#cfm').hidden) closeConfirm(); else if (!$('#viewer').hidden) $('#vclose').click(); else if (!$('#cpop').hidden) closeComments(); else if (!$('#tpop').hidden) closeTagPop(); else if (!$('#lpop').hidden) closeLinks(); else if (!$('#tagwin').hidden) closeTags(); else if (!$('#clog').hidden) closeLog(); else if (!$('#lecs').hidden) closeLecs(); else if (!$('#toc').hidden) closeToc(); else closeSearch(); } });
 addEventListener('resize', () => { clampView(); apply(); });
 
 switchLecture(ROOT, { force: true });
