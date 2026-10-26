@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b9"><script>window.__build="b9";(function(){try{var me="b9";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b10"><script>window.__build="b10";(function(){try{var me="b10";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -278,6 +278,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .ltree .tree{font-size:12.5px;line-height:18px;--mid:10px}
 .lecs .lec .ln{text-align:left}
 .vp.tagview::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Cg stroke='%23808086' stroke-opacity='.14' stroke-width='15' stroke-linecap='round' fill='none'%3E%3Cpath d='M135 12L68 388M235 12L168 388M14 140H286M14 260H286'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat}
+.guard{flex:none;height:calc(env(safe-area-inset-bottom,0px) + 14px);background:var(--canvas);border-top:.5px solid var(--sep);touch-action:none;user-select:none;-webkit-user-select:none;position:relative;z-index:5}
 @media (prefers-reduced-motion:reduce){.flash,.lecs,.toc,.results,.mt,.backbar,.world.fade{animation:none}.card,.icon,.res,.lec,.tr{transition:none}}
 </style>
 
@@ -320,6 +321,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
   <div class="lecs" id="lecs" hidden></div>
 </div>
 
+<div class="guard" id="guard" aria-hidden="true"></div>
 <div class="viewer" id="viewer" hidden>
   <div class="vbar"><span id="vcap">Tap image to zoom</span><button id="vclose">Done</button></div>
   <div class="vbody" id="vbody"></div>
