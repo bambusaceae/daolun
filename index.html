@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b5"><script>window.__build="b5";(function(){try{var me="b5";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b6"><script>window.__build="b6";(function(){try{var me="b6";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -468,7 +468,10 @@ function animateTo(ntx, nty, ns = s, dur = 320) {
   };
   anim = requestAnimationFrame(step);
 }
-function centerTarget(id, ns) { const p = POS[id], vh = vp.clientHeight; return [16 - p.x * ns, BARH + Math.max(16, (vh - BARH) * 0.25) - p.y * ns]; }
+function centerTarget(id, ns) {
+  const p = POS[id], vh = vp.clientHeight, vw = vp.clientWidth, ah = vh - BARH, ch = p.h * ns;
+  return [vw / 2 - (p.x + p.w / 2) * ns, ch > ah - 32 ? BARH + 16 - p.y * ns : BARH + ah / 2 - (p.y + p.h / 2) * ns];
+}
 function centerOn(id, instant) {
   if (!POS[id]) return;
   const ns = Math.max(s, 0.9), [a, b] = centerTarget(id, ns);
