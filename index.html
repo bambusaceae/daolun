@@ -6,6 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
+<meta name="build" content="b5"><script>window.__build="b5";(function(){try{var me="b5";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -1085,7 +1086,7 @@ function syncHTML() {
     '<details class="syd"' + (sOn() ? '' : ' open') + '><summary>GitHub Sync settings</summary>' +
     '<input id="srepo" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="owner/repository" value="' + esc(sget(SK.repo, '')) + '">' +
     '<input id="stoken" type="password" autocomplete="off" placeholder="' + (sget(SK.token, '') ? 'Saved · paste to replace' : 'Paste your fine-grained token') + '">' +
-    '<div class="syr"><span class="synote">Comments and highlights sync to this repository.</span><button class="sybtn" data-act="ssave">Save</button></div></details></div>';
+    '<div class="syr"><span class="synote">Comments, highlights and tags sync to this repository. Build ' + esc(window.__build || 'preview') + '</span><button class="sybtn" data-act="ssave">Save</button></div></details></div>';
 }
 const b64e = s => { const by = new TextEncoder().encode(s); let b = ''; for (const x of by) b += String.fromCharCode(x); return btoa(b); };
 const b64d = s => { const b = atob(s.replace(/\s/g, '')), by = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) by[i] = b.charCodeAt(i); return new TextDecoder().decode(by); };
