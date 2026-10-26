@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b8"><script>window.__build="b8";(function(){try{var me="b8";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b9"><script>window.__build="b9";(function(){try{var me="b9";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -1056,8 +1056,9 @@ function buildTagView(name) {
 function openTagMap(name, focusCard) {
   if (ROOT !== 'tgr') backStack.push({ lec: ROOT, tx, ty, s, sel: SEL, label: SEL ? nameOf(SEL) : lecInfo(ROOT).name });
   TAGNAME = name; buildTagView(name); delete VIEWS.tgr; closeLecs();
-  switchLecture('tgr', { force: true });
-  if (focusCard) { const c = IDS.tgr.find(x => N[x]._o === focusCard); if (c) goTo(c, { flash: false }), select(c); }
+  const fc = focusCard && IDS.tgr.find(x => N[x]._o === focusCard);
+  switchLecture('tgr', fc ? { force: true, target: true } : { force: true });
+  if (fc) { select(fc); centerOn(fc, true); }
   showBack();
 }
 function refreshTagView() {
