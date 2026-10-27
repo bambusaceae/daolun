@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b11"><script>window.__build="b11";(function(){try{var me="b11";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b12"><script>window.__build="b12";(function(){try{var me="b12";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -371,7 +371,6 @@ function cardHTML(id) {
   if (!n.t && !isRt) cls.push('untitled');
   if (!n.b.length && !n.l.length && !n.bl.length) cls.push('bare');
   let h = '<div class="' + cls.join(' ') + '" id="c-' + id + '" data-id="' + id + '">';
-  if (n._o && VROOTS.has(P[id])) h += '<div class="tgl" data-orig="' + n._o + '">' + esc(lecInfo(LEC[n._o]).name) + '</div>';
   if (n.t || isRt) h += '<div class="ct">' + esc(nameOf(id)) + '</div>';
   let b = '';
   for (const x of n.b) b += x.img ? '<img alt="" src="' + x.img + '" width="' + x.iw + '" height="' + x.ih + '">' : '<p>' + x.h.replace(/(<br>\s*){2,}/g, '<br>') + '</p>';
@@ -1052,7 +1051,14 @@ function buildTagView(name) {
     N[par].k.push(id); IDS[R].push(id);
     for (const k of o.k) clone(k, id, lv + 1);
   };
-  tops.forEach(c => clone(c, R, 3));
+  LECS.forEach((r, gi) => {
+    const mine = tops.filter(c => LEC[c] === r); if (!mine.length) return;
+    const gid = 'tgg' + gi, li = lecInfo(r);
+    N[gid] = { t: li.num + ' ' + li.name, b: [], l: [], bl: [], k: [], v: 1 };
+    P[gid] = R; LV[gid] = 2; ORD[gid] = ORD[mine[0]]; LEC[gid] = R; plain[gid] = '';
+    N[R].k.push(gid); IDS[R].push(gid);
+    mine.forEach(c => clone(c, gid, 3));
+  });
   return tops.length;
 }
 function openTagMap(name, focusCard) {
