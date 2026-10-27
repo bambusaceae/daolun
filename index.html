@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b18"><script>window.__build="b18";(function(){try{var me="b18";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b19"><script>window.__build="b19";(function(){try{var me="b19";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});</script>
 <title>导论artifact</title>
 <style>
@@ -52,7 +52,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .icon svg{width:21px;height:21px}
 .ttlb{display:flex;align-items:baseline;gap:6px;min-width:0;max-width:100%;text-align:left}
 .ttlb svg{flex:none;width:10px;height:10px;color:var(--label3);align-self:center}
-.lecs{position:absolute;top:calc(var(--barh,90px) + 6px);left:8px;transform-origin:top left;width:68%;min-width:260px;max-width:420px;max-height:60%;z-index:11;overflow:hidden;display:flex;flex-direction:column;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;box-sizing:border-box;padding:0}
+.lecs{position:absolute;top:calc(var(--barh,90px) + 6px);left:8px;transform-origin:top left;width:265px;max-width:calc(100% - 16px);max-height:60%;z-index:11;overflow:hidden;display:flex;flex-direction:column;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;box-sizing:border-box;padding:0}
 .lec{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:9px 38px 9px 14px;position:relative;font-size:12.5px;line-height:17px}
 .lecw{position:relative}
 .lrow{position:relative}
@@ -112,7 +112,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .mt-e span{font-size:11px;line-height:11px;padding-left:4px;color:var(--label3);letter-spacing:.05em}
 .mt-e.ghost{visibility:hidden}
 .mt-c > .mt-m::after{top:var(--t,0);bottom:var(--b,0)}
-.toc{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:68%;min-width:260px;max-width:480px;height:60%;z-index:10;overflow:auto;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;padding:10px 14px 14px;box-sizing:border-box;touch-action:pan-x pan-y;cursor:auto;overscroll-behavior:contain}
+.toc{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:265px;max-width:calc(100% - 16px);height:60%;z-index:10;overflow:auto;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;padding:10px 14px 14px;box-sizing:border-box;touch-action:pan-x pan-y;cursor:auto;overscroll-behavior:contain}
 .toc .tree{font-size:12.5px;line-height:18px;--mid:10px}
 .toc .tr{padding:1px 5px;margin-left:-5px;color:var(--label2)}
 .toc .tr.v1,.toc .tr.v2{color:var(--label);font-weight:600}
@@ -152,7 +152,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 @keyframes flash{0%,35%{box-shadow:inset 0 0 0 1.5px var(--accent);background:var(--accent-weak)}100%{box-shadow:inset 0 0 0 1.5px transparent}}
 
 /* ---------- search results (iOS grouped list) ---------- */
-.results{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:68%;min-width:260px;max-width:480px;height:60%;box-sizing:border-box;z-index:10;overflow:auto;overscroll-behavior:contain;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;padding:0 10px 16px;user-select:text;-webkit-user-select:text;cursor:auto;touch-action:pan-y}
+.results{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:265px;max-width:calc(100% - 16px);height:60%;box-sizing:border-box;z-index:10;overflow:auto;overscroll-behavior:contain;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;padding:0 10px 16px;user-select:text;-webkit-user-select:text;cursor:auto;touch-action:pan-y}
 .hint{padding:32px 10px;text-align:center;color:var(--label3);font-size:12.5px}
 .gh{display:flex;align-items:baseline;justify-content:space-between;padding:10px 4px 4px;font-variant-numeric:tabular-nums}
 .sh{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 -2px;padding:0 4px 4px;border-bottom:.5px solid var(--sep);font-size:11px;color:var(--label3);letter-spacing:.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}
@@ -184,8 +184,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .vbody.big img{width:1100px;max-width:none}
 
 /* ---------- action bar, comments, focus ---------- */
-.abar{position:absolute;z-index:12;display:flex;gap:2px;padding:3px;background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;white-space:nowrap}
-.abar button{display:flex;align-items:center;gap:4px;padding:5px 8px;border-radius:9px;font-size:13px;color:var(--accent)}
+.abar{position:absolute;z-index:12;display:flex;gap:0;padding:3px;background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;white-space:nowrap}
+.abar button{display:flex;align-items:center;gap:4px;padding:5px 6px;border-radius:9px;font-size:13px;color:var(--accent)}
 .abar button svg{width:18px;height:18px}
 .abar button:active{background:var(--cur-bg)}
 .abar button.on{background:var(--cur-bg)}
@@ -197,7 +197,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .card.hl{background:var(--hl)}
 .card.off{opacity:0;visibility:hidden;pointer-events:none}.card.dim:not(.off){opacity:.2}
 .card.hasc::after{content:"";position:absolute;top:6px;right:7px;width:5px;height:5px;border-radius:50%;background:#ff3b30}
-.cpop,.clog{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:68%;min-width:260px;max-width:480px;max-height:60%;box-sizing:border-box;z-index:13;display:flex;flex-direction:column;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;overflow:hidden;user-select:text;-webkit-user-select:text;cursor:auto}
+.cpop,.clog{position:absolute;top:calc(var(--barh,90px) + 6px);right:8px;transform-origin:top right;width:265px;max-width:calc(100% - 16px);max-height:60%;box-sizing:border-box;z-index:13;display:flex;flex-direction:column;background:var(--glass-w);-webkit-backdrop-filter:blur(30px) saturate(1.9);backdrop-filter:blur(30px) saturate(1.9);border:.5px solid var(--sep);border-radius:12px;overflow:hidden;user-select:text;-webkit-user-select:text;cursor:auto}
 .clog{height:60%;overflow:auto;display:block;padding:0 10px 14px;overscroll-behavior:contain;touch-action:pan-y}
 .ch{display:flex;align-items:center;gap:8px;padding:10px 8px 8px 14px;border-bottom:.5px solid var(--sep)}
 .ch b{flex:1;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -215,7 +215,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .cmeta span:last-child{flex:none;white-space:nowrap}
 .cmeta button{margin-left:12px;color:var(--accent);font-size:11.5px}
 .cf{display:flex;gap:8px;align-items:flex-end;padding:10px 12px;border-top:.5px solid var(--sep)}
-.cw{flex:1;min-width:0;height:64px;overflow:hidden;background:var(--field);border-radius:8px}
+.cw{flex:1;min-width:0;height:32px;overflow:hidden;background:var(--field);border-radius:8px}
 /* 16px text scaled to 11.7px: iOS only zooms the page on focus when the real font size is below 16px */
 .cf textarea{display:block;width:136.75%;height:136.75%;box-sizing:border-box;resize:none;font:inherit;font-size:16px;line-height:1.35;color:var(--label);background:none;border:0;padding:10.9px 13.7px;outline:0;transform:scale(.73125);transform-origin:0 0}
 .cadd{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:var(--canvas)}
@@ -231,7 +231,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .sybtn{flex:none;padding:4px 12px;border-radius:8px;background:var(--accent);color:var(--canvas);font-size:12px}
 .syd{margin-top:8px;font-size:12px}
 .syd summary{cursor:pointer;color:var(--label2);padding:2px 0}
-.syd input{display:block;width:100%;box-sizing:border-box;margin:8px 0;font:inherit;font-size:16px;color:var(--label);background:var(--field);border:0;border-radius:8px;padding:7px 9px;outline:0}
+.syd .iw{height:30px;margin:8px 0;overflow:hidden;background:var(--field);border-radius:8px}
+.syd input{display:block;width:136.75%;height:136.75%;box-sizing:border-box;font:inherit;font-size:16px;color:var(--label);background:none;border:0;padding:0 12px;outline:0;transform:scale(.73125);transform-origin:0 0}
 .synote{font-size:11px}
 .icon{position:relative}
 .icon.unsynced::after{content:"";position:absolute;top:4px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--label3)}
@@ -284,6 +285,11 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .tchip{padding:2px 9px;border-radius:11px;background:transparent;border:1px solid var(--line);font-size:11.5px;line-height:16px;color:var(--label2)}
 .tchip.on{background:var(--accent);border-color:var(--accent);color:var(--canvas)}
 @media (prefers-reduced-motion:reduce){.flash,.lecs,.toc,.results,.mt,.backbar,.world.fade{animation:none}.card,.icon,.res,.lec,.tr{transition:none}}
+.card.hasl::before{content:"↗";position:absolute;top:4px;right:8px;font-size:11px;line-height:12px;font-weight:600;color:var(--label3)}
+.card.hasl.hasc::before{right:17px}
+.card.hasl.hast::before{right:21px}
+.card.hasl.hast.hasc::before{right:30px}
+.tinfo{padding:8px 0 4px}
 </style>
 
 <header class="bar">
@@ -310,10 +316,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
     <div id="rlist"></div>
   </div>
   <div class="abar" id="abar" hidden>
-    <button data-act="hl" aria-label="Highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5-8.5 8.5H6v-5z"/><path d="M4 21h16"/></svg>Highlight</button>
-    <button data-act="comment" aria-label="Comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Comment</button>
-    <button data-act="tag" aria-label="Tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 7.5 20M16.5 4 15 20M4 9h16M3.5 15h16"/></svg>Tag</button>
-  </div>
+    <button data-act="hl" aria-label="Highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5-8.5 8.5H6v-5z"/><path d="M4 21h16"/></svg>Highlight</button><button data-act="comment" aria-label="Comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Comment</button><button data-act="tag" aria-label="Tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 7.5 20M16.5 4 15 20M4 9h16M3.5 15h16"/></svg>Tag</button><button data-act="link" aria-label="Link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Link</button></div>
 
   <div class="fpill" id="fpill" hidden><span id="fpillt"></span><button data-act="unfocus" aria-label="Exit focus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>
   <div class="cpop" id="cpop" hidden></div>
@@ -559,7 +562,7 @@ function momentum(vx, vy) {
 }
 vp.addEventListener('click', e => { if (suppress) { e.stopPropagation(); e.preventDefault(); suppress = false; } }, true);
 vp.addEventListener('wheel', e => {
-  if (e.target.closest('.results,.toc,.lecs')) return;
+  if (e.target.closest('.results,.toc,.lecs,.cpop,.clog')) return;
   e.preventDefault(); stopAnim();
   const r = vp.getBoundingClientRect();
   if (e.ctrlKey) {
@@ -656,12 +659,12 @@ function doSearch() {
     while (p && P[p]) { chain.unshift(nameOf(p)); p = P[p]; }
     let snip = plain[id]; const i = snip.toLowerCase().indexOf(ql);
     if (i > 24) snip = '…' + snip.slice(i - 20);
-    return '<button class="res" data-go="' + id + '"><div class="rx"><div class="rt">' + mark(nameOf(id), q) + '</div>' + (chain.length ? '<div class="rp">' + esc(chain.join(' › ')) + '</div>' : '') + (snip ? '<div class="rs">' + mark(snip, q) + '</div>' : '') + '</div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
+    return '<button class="res" data-go="' + id + '"><div class="rx"><div class="rt">' + mark(nameOf(id), q) + '</div>' + (snip ? '<div class="rs">' + mark(snip, q) + '</div>' : '') + '</div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
   };
   let h = '';
   if (cm.length) h += '<div class="lgh"><b>Comments</b><span>' + cm.length + '</span></div><div class="group">' + cm.map(c => {
     let snip = c.text, i = snip.toLowerCase().indexOf(ql); if (i > 24) snip = '…' + snip.slice(i - 20);
-    return '<button class="res" data-go="' + c.card + '"><div class="rx"><div class="rt">' + mark(snip, q) + '</div><div class="rp">' + esc(nameOf(c.card)) + ' · ' + esc(lecInfo(LEC[c.card]).name) + '</div></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
+    return '<button class="res" data-go="' + c.card + '"><div class="rx"><div class="rt">' + mark(nameOf(c.card), q) + '</div><div class="rs">' + mark(snip, q) + '</div></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 6.5 7l-5 5.5"/></svg></button>';
   }).join('') + '</div>';
   for (const r of order) {
     const list = res.filter(id => LEC[id] === r).sort((a, b) => LV[a] - LV[b] || ORD[a] - ORD[b]);
@@ -747,6 +750,7 @@ function select(id) {
   const d = vp.getBoundingClientRect().top - top0;
   if (d) { ty -= d; apply(); }
   if (!$('#lecs').hidden && lecTab === 'out') markCur($('#lecs'));
+  showInfo(id);
 }
 let tocBuilt = false;
 function closeToc() {}
@@ -766,7 +770,7 @@ document.addEventListener('click', e => {
   const t = e.target; let el;
   const sel = getSelection(); if (sel && !sel.isCollapsed && t.closest('.card') && sel.toString().trim()) return; // just selected text
   if (!$('#cfm').hidden && !t.closest('.cfb')) { closeConfirm(); return; }
-  if (!$('#cpop').hidden && !t.closest('#cpop,.abar,.cfb')) { closeComments(); return; }
+  if (!$('#cpop').hidden && !t.closest('#cpop,.abar,.cfb,.card')) { closeComments(); return; }
   if (!$('#tpop').hidden && !t.closest('#tpop,.abar,.cfb')) { closeTagPop(); return; }
   if (!$('#lpop').hidden && !t.closest('#lpop,.abar,.cfb')) { closeLinks(); return; }
   if (!$('#clog').hidden && !t.closest('.clog,#btnLog,.cfb')) { closeLog(); return; }
@@ -804,7 +808,7 @@ document.addEventListener('click', e => {
 let barOn = false;
 const abar = $('#abar');
 function placeBar() {
-  if (barOn && SEL) { const hb = abar.querySelector('[data-act=hl]'); if (hb) { const on = HL.has(oid(SEL)); hb.classList.toggle('on', on); hb.lastChild.textContent = on ? 'Unhighlight' : 'Highlight'; } }
+  if (barOn && SEL) { const hb = abar.querySelector('[data-act=hl]'); if (hb) { const on = HL.has(oid(SEL)); hb.classList.toggle('on', on); hb.lastChild.textContent = on ? 'Unhighlight' : 'Highlight'; } const nb = abar.querySelector('[data-act=comment]'); if (nb) nb.style.display = hasInfo(oid(SEL)) ? 'none' : ''; }
   if (!barOn || !SEL || !EL[SEL] || LEC[SEL] !== ROOT) { abar.hidden = true; return; }
   abar.hidden = false;
   const p = POS[SEL], vw = vp.clientWidth, bw = abar.offsetWidth, bh = abar.offsetHeight;
@@ -824,14 +828,14 @@ function barAct(el) {
   else if (a === 'hl') { toggleHL(oid(SEL)); }
   else if (a === 'ttog') { setTag(tCard, el.dataset.tag, !tagsOf(tCard).includes(el.dataset.tag)); renderTagPop(); }
   else if (a === 'tadd') { tAdd(); }
-  else if (a === 'topen') { openTagMap(el.dataset.tag); }
-  else if (a === 'lkgo') { const to = el.dataset.to, from = lCard; closeLinks(); backStack.push({ lec: ROOT, tx, ty, s, sel: SEL, label: nameOf(SEL || from) }); goTo(to); showBack(); }
-  else if (a === 'lkadd') { linkPick = lCard; closeLinks(); openSearch(); }
+  else if (a === 'topen') { openTagMap(el.dataset.tag, el.dataset.card); }
+  else if (a === 'lkgo') { const to = el.dataset.to, from = lCard || cCard; closeLinks(); closeComments(); backStack.push({ lec: ROOT, tx, ty, s, sel: SEL, label: nameOf(SEL || from) }); goTo(to); showBack(); }
+  else if (a === 'lkadd') { linkPick = lCard || cCard; closeLinks(); closeComments(); openSearch(); }
   else if (a === 'lkdel') { askDelLink(el.dataset.cid); }
-  else if (a === 'lkdelyes') { const id = el.dataset.cid; closeConfirm(); const l = LINKS.find(x => x.id === id); if (l) { l.del = Date.now(); l.u = l.del; saveLinks(); if (!$('#lpop').hidden) renderLinks(); } }
+  else if (a === 'lkdelyes') { const id = el.dataset.cid; closeConfirm(); const l = LINKS.find(x => x.id === id); if (l) { l.del = Date.now(); l.u = l.del; saveLinks(); if (!$('#lpop').hidden) renderLinks(); if (!$('#cpop').hidden) renderComments(); } }
   else if (a === 'focus') { barOn = false; placeBar(); setFocus(SEL); }
   else if (a === 'unfocus') setFocus(null);
-  else if (a === 'cclose') closeComments();
+  else if (a === 'cclose') { const back = el.closest('#tpop') ? tCard : el.closest('#lpop') ? lCard : null; if (el.closest('#tpop')) closeTagPop(); else if (el.closest('#lpop')) closeLinks(); else closeComments(); if (back) showInfo(back); }
   else if (a === 'cadd') cSave();
   else if (a === 'esave') eSave();
   else if (a === 'ecancel') { cEditing = null; renderComments(); }
@@ -839,7 +843,6 @@ function barAct(el) {
   else if (a === 'cdel') askDel(el.dataset.cid);
   else if (a === 'cdelyes') { const id = el.dataset.cid; closeConfirm(); cDel(id, true); }
   else if (a === 'cno') closeConfirm();
-  else if (a === 'crestore') cDel(el.dataset.cid, false);
   else if (a === 'cgo') { closeLog(); goTo(el.dataset.card); }
   else if (a === 'sync') { sync(); }
   else if (a === 'ssave') { const t = $('#stoken').value.trim(); if (t) sset(SK.token, t); sset(SK.repo, $('#srepo').value.trim()); $('#stoken').value = ''; syncSt = { busy: false, error: '' }; sset(SK.dirty, Date.now()); sync(); }
@@ -894,7 +897,8 @@ const cu = c => Math.max(c.u || 0, c.t || 0, c.e || 0, c.del || 0);
 function paintDots() {
   const has = new Set(COMMENTS.filter(c => !c.del).map(c => c.card)), lk = new Set();
   const tg = new Set(Object.keys(TGM).filter(k => TGM[k].on).map(k => tsplit(k)[0]));
-  for (const k in EL) { EL[k].classList.toggle('hasc', has.has(oid(k))); EL[k].classList.toggle('hast', tg.has(oid(k))); }
+  for (const l of LINKS) if (!l.del) { lk.add(l.from); lk.add(l.to); }
+  for (const k in EL) { EL[k].classList.toggle('hasl', lk.has(oid(k))); EL[k].classList.toggle('hasc', has.has(oid(k))); EL[k].classList.toggle('hast', tg.has(oid(k))); }
 }
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const pad = n => (n < 10 ? '0' : '') + n;
@@ -902,27 +906,42 @@ const hm = t => { const d = new Date(t); return pad(d.getHours()) + ':' + pad(d.
 const dstr = t => { const d = new Date(t); return MON[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear(); };
 const nl = s => esc(s).replace(/\n/g, '<br>');
 let cCard = null, cEditing = null;
+function hasInfo(o) { return !!o && (COMMENTS.some(c => c.card === o && !c.del) || tagsOf(o).length > 0 || LINKS.some(l => !l.del && (l.from === o || l.to === o))); }
+function showInfo(id) {
+  if (!$('#tpop').hidden || !$('#lpop').hidden || !$('#clog').hidden) return;
+  const o = oid(id);
+  if (hasInfo(o)) { cCard = o; cEditing = null; renderComments(); $('#cpop').hidden = false; placeWin($('#cpop')); }
+  else if (!$('#cpop').hidden) closeComments();
+}
+function placeWin(el) {
+  const c = SEL && EL[SEL]; if (!c) { el.style.left = ''; el.style.right = ''; return; }
+  const r = c.getBoundingClientRect(), v = vp.getBoundingClientRect();
+  if ((r.left + r.right) / 2 - v.left > v.width / 2) { el.style.left = '8px'; el.style.right = 'auto'; }
+  else { el.style.left = 'auto'; el.style.right = '8px'; }
+}
 function openComments(id) {
   cCard = id; cEditing = null; closeLog(); closeSearch(); closeToc(); closeLecs(); closeTagPop(); closeLinks(); closeTags();
-  renderComments(); $('#cpop').hidden = false;
+  renderComments(); $('#cpop').hidden = false; placeWin($('#cpop'));
 }
 function closeComments() { closeConfirm(); $('#cpop').hidden = true; cCard = null; cEditing = null; }
+const xSvg = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg>';
 function renderComments() {
   const old = $('#ctext'), draft = old ? old.value : '';
   const list = COMMENTS.filter(c => c.card === cCard && !c.del).sort((a, b) => b.t - a.t);
+  const tg = tagsOf(cCard).sort((a, b) => a.localeCompare(b));
+  const lks = LINKS.filter(l => !l.del && (l.from === cCard || l.to === cCard)).sort((a, b) => b.t - a.t);
   const item = c => c.id === cEditing
-    ? '<div class="ci"><div class="ew"><textarea id="etext" aria-label="Edit comment"></textarea></div><div class="cmeta"><span>' + dstr(c.t) + ', ' + hm(c.t) + '</span><span class="eact"><button data-act="ecancel">Cancel</button><button class="cadd" data-act="esave" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/></svg></button></span></div></div>'
-    : '<div class="ci"><div class="cm">' + nl(c.text) + '</div><div class="cmeta"><span>' + dstr(c.t) + ', ' + hm(c.t) + '</span><span><button data-act="cedit" data-cid="' + c.id + '">Edit</button><button data-act="cdel" data-cid="' + c.id + '">Delete</button></span></div></div>';
+    ? '<div class="ci"><div class="ew"><textarea id="etext" aria-label="Edit comment"></textarea></div><div class="cmeta"><span></span><span class="eact"><button data-act="ecancel">Cancel</button><button class="cadd" data-act="esave" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/></svg></button></span></div></div>'
+    : '<div class="ci"><div class="cm">' + nl(c.text) + '</div><div class="cmeta"><span></span><span><button data-act="cedit" data-cid="' + c.id + '">Edit</button><button data-act="cdel" data-cid="' + c.id + '">Delete</button></span></div></div>';
+  const lrow = l => { const other = l.from === cCard ? l.to : l.from; return '<div class="ci lkr"><button class="lkb" data-act="lkgo" data-to="' + other + '"><div class="cm">' + (l.from === cCard ? '↗ ' : '← ') + esc(labelOf(other)) + '</div><div class="cmeta"><span>' + esc(lecInfo(LEC[other]).name) + '</span></div></button><button class="cx" data-act="lkdel" data-cid="' + l.id + '" aria-label="Remove link">' + xSvg + '</button></div>'; };
+  const body = (tg.length ? '<div class="tchips tinfo">' + tg.map(n => '<button class="tchip on" data-act="topen" data-tag="' + esc(n) + '" data-card="' + cCard + '">#' + esc(n) + '</button>').join('') + '</div>' : '') +
+    list.map(item).join('') + lks.map(lrow).join('');
   $('#cpop').innerHTML =
-    '<div class="ch"><b>' + esc(labelOf(cCard)) + '</b><button class="cx" data-act="cclose" aria-label="Close"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>' +
-    '<div class="cl">' + (list.length ? list.map(item).join('') : '<div class="hint">No comments yet</div>') + '</div>' +
+    '<div class="cl">' + (body || '<div class="hint">No comments yet</div>') + '</div>' +
     '<div class="cf"><div class="cw"><textarea id="ctext" placeholder="Add a comment" aria-label="Comment"></textarea></div><button class="cadd" data-act="cadd" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/></svg></button></div>';
   $('#ctext').value = draft;
   const et = $('#etext');
-  if (et) {
-    const c = COMMENTS.find(x => x.id === cEditing); et.value = c ? c.text : '';
-    et.addEventListener('input', fitEdit); fitEdit();
-  }
+  if (et) { const c = COMMENTS.find(x => x.id === cEditing); et.value = c ? c.text : ''; et.addEventListener('input', fitEdit); fitEdit(); }
 }
 // inline editor: 16px real size (no iOS focus zoom) scaled to 11.7px; wrapper height follows the text
 function fitEdit() {
@@ -956,19 +975,18 @@ function cDel(cid, on) {
   const c = COMMENTS.find(x => x.id === cid); if (!c) return;
   if (on) c.del = Date.now(); else delete c.del;
   c.u = Date.now();
-  saveComments(); if (!$('#cpop').hidden) renderComments(); if (!$('#clog').hidden) renderLog();
+  saveComments(); if (!$('#cpop').hidden) { if (hasInfo(cCard)) renderComments(); else closeComments(); } if (!$('#clog').hidden) renderLog();
 }
 
 // ---------- comment log: every comment with its time ----------
 function openLog() { sync(); closeComments(); closeTagPop(); closeLinks(); closeTags(); closeSearch(); closeToc(); closeLecs(); renderLog(); $('#clog').hidden = false; $('#btnLog').setAttribute('aria-expanded', 'true'); }
 function closeLog() { $('#clog').hidden = true; $('#btnLog').setAttribute('aria-expanded', 'false'); }
 function renderLog() {
-  const live = COMMENTS.filter(c => !c.del).sort((a, b) => b.t - a.t), dead = COMMENTS.filter(c => c.del).sort((a, b) => b.del - a.del);
-  const row = (c, d) => '<div class="lr"><button class="lrb" ' + (d ? 'disabled' : 'data-act="cgo" data-card="' + c.card + '"') + '><div class="cm">' + nl(c.text) + '</div><div class="cmeta"><span>' + esc(labelOf(c.card)) + ' · ' + esc(lecInfo(LEC[c.card]).name) + '</span><span>' + hm(c.t) + '</span></div></button>' + (d ? '<button class="rs" data-act="crestore" data-cid="' + c.id + '">Restore</button>' : '') + '</div>';
+  const live = COMMENTS.filter(c => !c.del).sort((a, b) => b.t - a.t);
+  const row = c => '<div class="lr"><button class="lrb" data-act="cgo" data-card="' + c.card + '"><div class="cm">' + nl(c.text) + '</div><div class="cmeta"><span>' + esc(labelOf(c.card)) + ' · ' + esc(lecInfo(LEC[c.card]).name) + '</span></div></button></div>';
   let h = '<div class="lh"><b>Comments</b><span>' + live.length + '</span></div>', day = '';
   if (!live.length) h += '<div class="hint">No comments yet</div>';
-  for (const c of live) { const d = dstr(c.t); if (d !== day) { day = d; h += '<div class="sh"><span>' + d + '</span></div>'; } h += row(c, false); }
-  if (dead.length) { h += '<div class="sh"><span>Deleted</span><span>' + dead.length + '</span></div>'; for (const c of dead) h += row(c, true); }
+  for (const c of live) { const d = dstr(c.t); h += row(c); }
   $('#clog').innerHTML = syncHTML() + h;
 }
 
@@ -985,7 +1003,7 @@ function addLink(from, to) {
 }
 function openLinks(id) {
   lCard = id; closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeTagPop(); closeTags();
-  renderLinks(); $('#lpop').hidden = false;
+  renderLinks(); $('#lpop').hidden = false; placeWin($('#lpop'));
 }
 function closeLinks() { closeConfirm(); $('#lpop').hidden = true; lCard = null; }
 function renderLinks() {
@@ -1016,7 +1034,7 @@ function setTag(card, tag, on) { TGM[card + '|' + tag] = { on: on ? 1 : 0, t: Da
 const tickSvg = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 5 9.5 10 3"/></svg>';
 function openTagPop(id) {
   tCard = id; tSeen = new Set(); closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeLinks(); closeTags();
-  renderTagPop(); $('#tpop').hidden = false;
+  renderTagPop(); $('#tpop').hidden = false; placeWin($('#tpop'));
 }
 function closeTagPop() { $('#tpop').hidden = true; tCard = null; }
 function renderTagPop() {
@@ -1107,9 +1125,9 @@ function markDirty() { sset(SK.dirty, Date.now()); paintSync(); clearTimeout(syn
 function syncHTML() {
   return '<div class="sy"><div class="syr"><span id="sstat">' + esc(syncLabel()) + '</span><button class="sybtn" data-act="sync">Sync</button></div>' +
     '<details class="syd"' + (sOn() ? '' : ' open') + '><summary>GitHub Sync settings</summary>' +
-    '<input id="srepo" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="owner/repository" value="' + esc(sget(SK.repo, '')) + '">' +
-    '<input id="stoken" type="password" autocomplete="off" placeholder="' + (sget(SK.token, '') ? 'Saved · paste to replace' : 'Paste your fine-grained token') + '">' +
-    '<div class="syr"><span class="synote">Comments, highlights and tags sync to this repository. Build ' + esc(window.__build || 'preview') + '</span><button class="sybtn" data-act="ssave">Save</button></div></details></div>';
+    '<div class="iw"><input id="srepo" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="owner/repository" value="' + esc(sget(SK.repo, '')) + '"></div>' +
+    '<div class="iw"><input id="stoken" type="password" autocomplete="off" placeholder="' + (sget(SK.token, '') ? 'Saved · paste to replace' : 'Paste your fine-grained token') + '"></div>' +
+    '<div class="syr"><span class="synote">Comments, markers, tags and links sync to this repository. Build ' + esc(window.__build || 'preview') + '</span><button class="sybtn" data-act="ssave">Save</button></div></details></div>';
 }
 const b64e = s => { const by = new TextEncoder().encode(s); let b = ''; for (const x of by) b += String.fromCharCode(x); return btoa(b); };
 const b64d = s => { const b = atob(s.replace(/\s/g, '')), by = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) by[i] = b.charCodeAt(i); return new TextDecoder().decode(by); };
@@ -1191,11 +1209,11 @@ function moveSel(key) {
 }
 document.addEventListener('keydown', e => {
   if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
-  if (FSET || e.target.closest && e.target.closest('input,textarea') || document.querySelector('.cpop:not([hidden]),.clog:not([hidden])') || !$('#cfm').hidden || !$('#cpop').hidden || !$('#clog').hidden || !$('#viewer').hidden || !$('#results').hidden || !$('#toc').hidden || !$('#lecs').hidden) return;
+  if (FSET || (e.target.closest && e.target.closest('input,textarea')) || document.querySelector('#clog:not([hidden]),#tpop:not([hidden]),#lpop:not([hidden]),#lecs:not([hidden]),#results:not([hidden]),#viewer:not([hidden]),#cfm:not([hidden])')) return;
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   e.preventDefault(); clearJump(); moveSel(e.key);
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#cfm').hidden) closeConfirm(); else if (!$('#viewer').hidden) $('#vclose').click(); else if (!$('#cpop').hidden) closeComments(); else if (!$('#tpop').hidden) closeTagPop(); else if (!$('#lpop').hidden) closeLinks(); else if (!$('#tagwin').hidden) closeTags(); else if (!$('#clog').hidden) closeLog(); else if (!$('#lecs').hidden) closeLecs(); else if (!$('#toc').hidden) closeToc(); else closeSearch(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#cfm').hidden) closeConfirm(); else if (!$('#viewer').hidden) $('#vclose').click(); else if (!$('#cpop').hidden) closeComments(); else if (!$('#tpop').hidden) closeTagPop(); else if (!$('#lpop').hidden) closeLinks(); else if (!$('#clog').hidden) closeLog(); else if (!$('#lecs').hidden) closeLecs(); else closeSearch(); } });
 addEventListener('resize', () => { clampView(); apply(); });
 
 switchLecture(ROOT, { force: true });
