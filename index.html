@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="导论">
 <meta name="theme-color" content="#ffffff">
 <link rel="apple-touch-icon" href="icon.png"><link rel="icon" href="icon.png"><link rel="manifest" href="manifest.webmanifest">
-<meta name="build" content="b16"><script>window.__build="b16";(function(){try{var me="b16";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
+<meta name="build" content="b17"><script>window.__build="b17";(function(){try{var me="b17";fetch(location.pathname+"?nc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/name="build" content="([^"]+)"/);if(m&&m[1]!==me){var k="mn-reload-"+m[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?v="+m[1]);}}}).catch(function(){});}catch(e){}})();</script>
 <title>导论artifact</title>
 <style>
 /* Layout: one-screen pannable mind map on a white page. Frosted nav bar floats over the map;
@@ -279,6 +279,9 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-r
 .lecs .lec .ln{text-align:left}
 .vp.tagview::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='1' fill='%23808086' fill-opacity='.35'/%3E%3C/svg%3E") 0 0 / 16px 16px repeat}
 .guard{position:fixed;left:0;right:0;bottom:0;height:calc(env(safe-area-inset-bottom,0px) + 14px);background:transparent;touch-action:none;user-select:none;-webkit-user-select:none;z-index:30}
+.tchips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0 8px}
+.tchip{padding:6px 12px;border-radius:15px;background:var(--chip);font-size:13px;color:var(--label)}
+.tchip.on{background:var(--accent);color:var(--canvas)}
 @media (prefers-reduced-motion:reduce){.flash,.lecs,.toc,.results,.mt,.backbar,.world.fade{animation:none}.card,.icon,.res,.lec,.tr{transition:none}}
 </style>
 
@@ -1002,7 +1005,7 @@ function askDelLink(cid) {
 
 // ---------- tags: each tag opens as its own map ----------
 const TKEY = 'mn-tags-' + META.key;
-let TGM = {}, tCard = null, TAGNAME = null;
+let TGM = {}, tCard = null, TAGNAME = null, tSeen = new Set();
 try { TGM = JSON.parse(localStorage.getItem(TKEY) || '{}') || {}; } catch (e) {}
 const tsplit = k => { const i = k.indexOf('|'); return [k.slice(0, i), k.slice(i + 1)]; };
 function saveTags() { try { localStorage.setItem(TKEY, JSON.stringify(TGM)); } catch (e) {} markDirty(); refreshTagView(); paintDots(); if (!$('#lecs').hidden && lecTab === 'tag') openLecs(); }
@@ -1011,16 +1014,18 @@ const tagsOf = card => Object.keys(TGM).filter(k => TGM[k].on && tsplit(k)[0] ==
 function setTag(card, tag, on) { TGM[card + '|' + tag] = { on: on ? 1 : 0, t: Date.now() }; saveTags(); }
 const tickSvg = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5 5 9.5 10 3"/></svg>';
 function openTagPop(id) {
-  tCard = id; closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeLinks(); closeTags();
+  tCard = id; tSeen = new Set(); closeLog(); closeSearch(); closeToc(); closeLecs(); closeComments(); closeLinks(); closeTags();
   renderTagPop(); $('#tpop').hidden = false;
 }
 function closeTagPop() { $('#tpop').hidden = true; tCard = null; }
 function renderTagPop() {
-  const all = tagList(), names = Object.keys(all).sort((a, b) => a.localeCompare(b)), mine = new Set(tagsOf(tCard));
+  const all = tagList(), mine = new Set(tagsOf(tCard));
+  Object.keys(all).forEach(n => tSeen.add(n));
+  const names = [...tSeen].sort((a, b) => a.localeCompare(b));
   const old = $('#tin'), draft = old ? old.value : '';
   $('#tpop').innerHTML =
     '<div class="ch"><b>' + esc(labelOf(tCard)) + '</b><button class="cx" data-act="cclose" aria-label="Close"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3 3 9"/></svg></button></div>' +
-    '<div class="cl">' + (names.length ? names.map(n => '<button class="trow" data-act="ttog" data-tag="' + esc(n) + '"><span class="tnm">' + esc(n) + '</span><span class="tct">' + all[n].length + '</span><span class="tck">' + (mine.has(n) ? tickSvg : '') + '</span></button>').join('') : '<div class="hint">No tags yet</div>') + '</div>' +
+    '<div class="cl">' + (names.length ? '<div class="tchips">' + names.map(n => '<button class="tchip' + (mine.has(n) ? ' on' : '') + '" data-act="ttog" data-tag="' + esc(n) + '" aria-pressed="' + mine.has(n) + '">#' + esc(n) + '</button>').join('') + '</div>' : '<div class="hint">No tags yet</div>') + '</div>' +
     '<div class="cf"><div class="cw one"><input id="tin" type="text" placeholder="New tag" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="New tag"></div><button class="cadd" data-act="tadd" aria-label="Add tag">' + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6.5 11.5 12 6l5.5 5.5"/></svg>' + '</button></div>';
   const ti = $('#tin'); ti.value = draft;
   ti.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); tAdd(); } });
